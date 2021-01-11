@@ -6,7 +6,14 @@ html {
     overflow-x: hidden;
 }
 
+ ::selection {
+    color: #fff;
+    background: #1cc7d0;
+}
+
 body {
+    /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+    display: grid;
     background: #fff;
     font-size: 14px;
     font-weight: 400;
@@ -498,7 +505,7 @@ a.back-to-top:focus {
 }
 
 .top-nav-collapse .navbar-brand img {
-    width: 65%;
+    width: 25%;
 }
 
 .top-nav-collapse .navbar-nav .nav-link {
@@ -961,7 +968,7 @@ a:not([href]):not([tabindex]):hover {
 }
 
 .services-item .services-content h3 a {
-    font-size: 18px;
+    font-size: 16px;
     text-transform: uppercase;
     color: #666;
 }
