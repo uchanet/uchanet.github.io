@@ -19,7 +19,3 @@ services:
         value: "80"
       - key: OPENAI_API_KEY
         sync: false
-      - key: CAT_STUDIO_PASSWORD
-        sync: false
-      - key: CAT_SESSION_SECRET
-        generateValue: true

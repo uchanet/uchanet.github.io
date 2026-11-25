@@ -1,7 +1,7 @@
-name: CAT Studio secure service checks
+name: CAT Studio public service checks
 on:
   push:
-    branches: [cat-studio-render]
+    branches: [master, cat-studio-render]
   pull_request:
     paths:
       - 'cat-studio-service/**'
@@ -21,6 +21,6 @@ jobs:
           node --check server.mjs
           node --check app.js
           node --check auto-research.js
-      - name: Run authentication and API integration tests
+      - name: Run public access and API integration checks
         working-directory: cat-studio-service
-        run: node test-secure.mjs
+        run: node test-public.mjs

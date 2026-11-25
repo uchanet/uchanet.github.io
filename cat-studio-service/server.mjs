@@ -2,27 +2,22 @@ import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { scryptSync, createHmac, timingSafeEqual, randomBytes, createHash } from 'node:crypto';
+import { createHash } from 'node:crypto';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 4173);
 const HOST = process.env.HOST || '0.0.0.0';
-const PASSWORD = process.env.CAT_STUDIO_PASSWORD || '';
-const SECRET = process.env.CAT_SESSION_SECRET || '';
 const OPENAI_KEY = process.env.OPENAI_API_KEY || '';
 const OPENALEX_KEY = process.env.CAT_OPENALEX_API_KEY || '';
 const MODEL = process.env.CAT_OPENAI_MODEL || 'gpt-5-mini';
 const OPENAI_URL = process.env.NODE_ENV === 'production' ? 'https://api.openai.com/v1/responses' : (process.env.CAT_OPENAI_API_URL || 'https://api.openai.com/v1/responses');
 const OPENALEX_URL = process.env.NODE_ENV === 'production' ? 'https://api.openalex.org/works' : (process.env.CAT_OPENALEX_API_URL || 'https://api.openalex.org/works');
 const MAX_AI_PER_DAY = Math.min(250, Math.max(5, Number(process.env.CAT_MAX_AI_CALLS_PER_DAY || 80)));
-const COOKIE = '__Host-cat_session';
 const DAY = 86400000;
-if (PASSWORD.length < 16 || SECRET.length < 32 || !OPENAI_KEY || !Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
-  console.error('Missing secure environment variables. Configure CAT_STUDIO_PASSWORD (16+ chars), CAT_SESSION_SECRET (32+ chars), OPENAI_API_KEY and PORT.');
+if (!OPENAI_KEY || !Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
+  console.error('Missing required environment variables. Configure OPENAI_API_KEY and a valid PORT.');
   process.exit(1);
 }
-const SALT = createHash('sha256').update(SECRET).digest().subarray(0, 16);
-const PASS_HASH = scryptSync(PASSWORD, SALT, 64);
 const LIMITS = new Map();
 const MIME = { 'index.html':'text/html; charset=utf-8','styles.css':'text/css; charset=utf-8','app.js':'text/javascript; charset=utf-8','auto-research.js':'text/javascript; charset=utf-8' };
 const FILES = {'/':'index.html','/index.html':'index.html','/styles.css':'styles.css','/app.js':'app.js','/auto-research.js':'auto-research.js'};
@@ -54,27 +49,12 @@ function bucket(key, cap, span) {
   if(LIMITS.size>5000)for(const [k,v] of LIMITS)if(now>v.expires)LIMITS.delete(k);
   return b.n<=cap;
 }
-function sign(payload) {return createHmac('sha256',SECRET).update(payload).digest('base64url');}
-function issueCookie() {
-  const data=Buffer.from(JSON.stringify({nonce:randomBytes(18).toString('base64url'),exp:Date.now()+8*3600000})).toString('base64url');
-  return data+'.'+sign(data);
-}
-function validSession(req) {
-  const raw=(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith(COOKIE+'='));
-  if(!raw)return null;
-  const value=raw.slice(COOKIE.length+1);
-  const i=value.lastIndexOf('.');if(i<1)return null;
-  const data=value.slice(0,i), mac=value.slice(i+1), expected=sign(data);
-  if(mac.length!==expected.length || !timingSafeEqual(Buffer.from(mac),Buffer.from(expected)))return null;
-  try {const obj=JSON.parse(Buffer.from(data,'base64url').toString());if(typeof obj.exp!=='number'||Date.now()>obj.exp)return null;return value;}catch{return null;}
-}
 function originOK(req) {
   const host=String(req.headers.host||'');
   const origin=req.headers.origin || req.headers.referer;
   if(!origin)return false;
   try {const x=new URL(origin);return x.host===host && (x.protocol==='https:' || process.env.NODE_ENV!=='production');}catch{return false;}
 }
-function loginPage(error='') {return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Sign in | CAT Studio</title><style>body{font-family:system-ui;background:#f2f6f9;color:#1a2938;min-height:100vh;display:grid;place-items:center;margin:0}.card{background:#fff;max-width:390px;width:calc(100% - 40px);border:1px solid #dce6ed;border-radius:20px;box-shadow:0 20px 45px #14354a18;padding:38px}.logo{font-size:31px;color:#087b73;font-weight:750}h1{font-size:22px;margin:8px 0}p{color:#566774;font-size:14px;line-height:1.5}label{display:block;font-size:13px;font-weight:700;margin-top:24px}input{width:100%;box-sizing:border-box;padding:13px;margin-top:7px;border-radius:9px;border:1px solid #cad5df;font-size:16px}button{background:#0d716e;color:white;border:0;border-radius:9px;padding:13px;width:100%;margin-top:16px;font-size:15px;font-weight:700;cursor:pointer}.error{color:#a52832;background:#fff0f0;padding:12px;border-radius:8px}</style></head><body><main class="card"><div class="logo">✦</div><h1>CAT Studio</h1><p>Private, evidence-first AI research workspace. Sign in to access CAT 1, CAT 2, and CAT 3.</p>'+(error?'<p class="error">Incorrect password or too many attempts. Please try again later.</p>':'')+'<form method="post" action="/auth/login"><label for="password">Workspace password</label><input id="password" name="password" type="password" autocomplete="current-password" minlength="1" maxlength="256" required><button type="submit">Sign in securely</button></form><p>Your CAT drafts are stored in this browser. Keep exports as backups.</p></main></body></html>';}
 async function body(req,max=135000){
   const parts=[];let len=0;
   for await(const chunk of req){len+=chunk.length;if(len>max)throw Object.assign(new Error('Request too large'),{status:413});parts.push(chunk);}
@@ -111,8 +91,8 @@ function compactPaper(p,i) {
   return {id:safe(p.id,120)||'R'+(i+1),title:safe(p.title,360),abstract:safe(p.abstract,1800),
     year:safe(String(p.year||''),8),journal:safe(p.journal,160),doi:safe(p.doi,150),source:safe(p.source,35)};
 }
-async function handleAPI(req,res,route,session) {
-  const identity=createHash('sha256').update(session).digest('hex').slice(0,18);
+async function handleAPI(req,res,route) {
+  const identity=createHash('sha256').update(req.socket.remoteAddress||'unknown').digest('hex').slice(0,18);
   if(!bucket('api:'+identity,90,3600000))return json(res,429,{error:'Hourly request limit reached.'});
   const type=String(req.headers['content-type']||'');
   if(!type.startsWith('application/json'))return json(res,415,{error:'JSON content type required.'});
@@ -170,33 +150,11 @@ const server=http.createServer(async(req,res)=>{
   try{
     const route=new URL(req.url||'/', 'http://localhost').pathname;
     if(route==='/healthz' && req.method==='GET')return json(res,200,{ok:true});
-    if(route==='/auth/login'){
-      if(req.method==='GET')return html(res,200,loginPage());
-      if(req.method!=='POST')return json(res,405,{error:'Method not allowed'});
-      if(!originOK(req))return html(res,403,loginPage('invalid origin'));
-      const address=req.socket.remoteAddress||'unknown';
-      if(!bucket('login:'+address,7,15*60000))return html(res,429,loginPage('too many attempts'));
-      const form=new URLSearchParams(await body(req,4000)),pass=form.get('password')||'';
-      const candidate=scryptSync(pass.slice(0,256),SALT,64);
-      if(!timingSafeEqual(candidate,PASS_HASH))return html(res,401,loginPage('wrong password'));
-      headers(res,{'Location':'/','Set-Cookie':COOKIE+'='+issueCookie()+'; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=28800'});
-      res.writeHead(303);return res.end();
-    }
-    if(route==='/auth/logout'){
-      if(req.method!=='POST'||!originOK(req))return json(res,403,{error:'Forbidden'});
-      headers(res,{'Location':'/auth/login','Set-Cookie':COOKIE+'=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0'});
-      res.writeHead(303);return res.end();
-    }
-    const session=validSession(req);
-    if(!session){
-      if(route.startsWith('/api/'))return json(res,401,{error:'Please sign in first.'});
-      headers(res,{'Location':'/auth/login'});res.writeHead(303);return res.end();
-    }
     if(route==='/api/health' && req.method==='GET')return json(res,200,{configured:true,model:MODEL,research_provider:'OpenAlex',source:'server'});
     if(route.startsWith('/api/')){
       if(req.method!=='POST')return json(res,405,{error:'Method not allowed'});
       if(!['/api/chat','/api/research','/api/research/screen','/api/research/draft'].includes(route))return json(res,404,{error:'Not found'});
-      return await handleAPI(req,res,route,session);
+      return await handleAPI(req,res,route);
     }
     if(!['GET','HEAD'].includes(req.method))return json(res,405,{error:'Method not allowed'});
     const file=FILES[route];if(!file)return json(res,404,{error:'Not found'});
@@ -205,4 +163,4 @@ const server=http.createServer(async(req,res)=>{
     res.writeHead(200);res.end(req.method==='HEAD'?'':buff);
   }catch(e){console.error('CAT server error',e?.name||'Error');json(res,e?.status||502,{error:e?.status===413?'Request too large.':e?.status===400?'Invalid request.':'Request failed. Please try again.'});}
 });
-server.listen(PORT,HOST,()=>console.log('CAT Studio secure service listening on port '+PORT));
+server.listen(PORT,HOST,()=>console.log('CAT Studio public service listening on port '+PORT));
