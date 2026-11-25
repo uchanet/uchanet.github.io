@@ -40,4 +40,4 @@ For local browser testing, the secure cookies require HTTPS. Use Render HTTPS fo
 
 ## Costs
 
-Render compute charges and OpenAI API charges are separate. The preset is a paid `starter` Render service to avoid the limitations of sleeping free-tier services. Adjust only after reviewing your account options.
+Render compute charges and OpenAI API charges are separate. The Blueprint defaults to Render's `free` web-service plan to avoid unexpected hosting charges. Free services may spin down after inactivity and incur a cold start. You can switch to a paid plan later if you need always-on availability.
