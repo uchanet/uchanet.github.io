@@ -161,6 +161,11 @@ const server=http.createServer(async(req,res)=>{
     const buff=await readFile(path.join(ROOT,file));
     headers(res,{'Content-Type':MIME[file]||'application/octet-stream'});
     res.writeHead(200);res.end(req.method==='HEAD'?'':buff);
-  }catch(e){console.error('CAT server error',e?.name||'Error');json(res,e?.status||502,{error:e?.status===413?'Request too large.':e?.status===400?'Invalid request.':'Request failed. Please try again.'});}
+  }catch(e){
+    const status=Number.isInteger(e?.status)?e.status:0;
+    console.error('CAT server error',e?.name||'Error',status?'upstream status '+status:'');
+    const message=status===401?'OpenAI rejected the API key. Check that it is active.':status===403?'OpenAI denied this request. Check project permissions and model access.':status===429?'OpenAI rate or billing limit reached. Check project usage limits and billing.':status===400?'OpenAI rejected the request. Check the configured model and request settings.':status===413?'Request too large.':status===0?'Request failed. Please try again.':'AI provider request failed. Check the provider status and project settings.';
+    json(res,status||502,{error:message});
+  }
 });
 server.listen(PORT,HOST,()=>console.log('CAT Studio public service listening on port '+PORT));
