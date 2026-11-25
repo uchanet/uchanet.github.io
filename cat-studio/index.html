@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0c2d47" />
+  <title>CAT Studio | Evidence-Based Policy Research</title>
+  <meta name="description" content="A guided CAT 1/2/3 drafting and evidence appraisal workspace compatible with the 2026 SNU CAT form." />
+  <style>
+:root{
+  --navy:#10334d;--deep:#0b263d;--teal:#0d7c75;--aqua:#d9f6f1;--tealLine:#9bded3;--ink:#1a2938;--muted:#5e6e7b;--line:#e2e8ee;--bg:#f4f7fa;--white:#fff;--gold:#ae7628;--goldbg:#fff5df;--danger:#ac353d;--radius:14px;--shadow:0 10px 25px rgba(13,38,61,.055);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-synthesis:none
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.shell{min-height:100vh;display:grid;grid-template-columns:253px 1fr}
+.sidebar{background:var(--deep);color:#e9f4f8;min-height:100vh;position:sticky;top:0;max-height:100vh;padding:28px 18px;display:flex;flex-direction:column}
+.brand{display:flex;gap:10px;align-items:center;padding:4px 9px 30px}
+.brand-logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,#20b7aa,#087d82);color:white;display:grid;place-items:center;font-size:20px;font-weight:900;letter-spacing:-2px}
+.brand-main{font-size:18px;letter-spacing:-.7px;font-weight:800}
+.brand-sub{font-size:10px;color:#98b7c7;letter-spacing:1.2px;text-transform:uppercase}
+.nav-label{text-transform:uppercase;color:#92aabc;font-size:10px;letter-spacing:1.3px;font-weight:800;padding:0 13px;margin-bottom:10px}
+.nav-item{border:0;background:transparent;color:#bed0dc;border-radius:10px;display:flex;align-items:center;text-align:left;gap:11px;padding:12px 11px;width:100%;margin:2px 0;font-weight:580;font-size:13px}
+.nav-item:hover{background:#173b55;color:#fff}
+.nav-item.active{background:#1b4b62;color:white;box-shadow:inset 3px 0 #2de0c7}
+.nav-icon{font-size:14px;color:#82adbf;width:23px;text-align:center}
+.nav-item.active .nav-icon{color:#4be3cf}
+.sidebar-bottom{margin-top:auto;background:#133a53;border:1px solid #204960;border-radius:12px;padding:14px 15px;font-size:12px;color:#bad0db}
+.sidebar-bottom strong{display:block;color:white;font-size:13px;margin-bottom:4px}
+.small-progress{height:6px;background:#29546b;border-radius:99px;margin-top:11px;overflow:hidden}
+.small-progress span{display:block;height:100%;background:#35c7b7;transition:width .3s}
+.main{min-width:0}
+.topbar{background:white;min-height:76px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:14px 38px;gap:15px}
+.crumb{color:#718291;font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.5px}
+.topbar-title{font-size:16px;font-weight:750;margin-top:3px;letter-spacing:-.35px}
+.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.round-pill{color:#0c665d;background:#e6f8f4;font-size:11px;font-weight:800;border-radius:100px;padding:7px 13px;border:1px solid #b9e7db}
+.btn{border:1px solid #d3dfe7;background:white;color:#24445a;font-size:12px;padding:10px 14px;border-radius:9px;font-weight:750;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn:hover{border-color:#8dbaaf;background:#f8fffd;text-decoration:none}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:white}
+.btn.primary:hover{background:#075f59}
+.btn.dark{background:var(--deep);border-color:var(--deep);color:white}
+.btn.pale{background:#e8f5f2;color:#116c66;border-color:#c5e9e2}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.danger{color:var(--danger);border-color:#efcad0}
+.btn.sm{padding:6px 10px;font-size:11px}
+.content{max-width:1250px;padding:33px 40px 70px;margin:auto}
+.page-head{margin-bottom:23px;display:flex;justify-content:space-between;align-items:end;gap:18px}
+.kicker{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;font-size:10.5px}
+h1{font-size:30px;line-height:1.2;letter-spacing:-1.2px;margin:5px 0 9px;font-weight:800;color:#142c3d}
+h2{font-size:17px;line-height:1.3;letter-spacing:-.4px;margin:0 0 6px;color:#183249}
+h3{font-size:14px;margin:0 0 8px;color:#234054}
+p{margin:6px 0 12px}
+.lead{color:var(--muted);font-size:14px;margin:0;max-width:780px}
+.hero{border:1px solid #c8e4df;background:linear-gradient(115deg,#f5fffc,#e7f6f5);border-radius:16px;padding:26px 29px;display:flex;gap:20px;justify-content:space-between;align-items:center;margin:20px 0 24px}
+.hero .icon-round{width:57px;height:57px;border-radius:17px;background:#d0eee7;display:grid;place-items:center;font-size:27px;flex:none}
+.hero p{color:#476a6c;font-size:13px;max-width:650px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:white;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);padding:22px;margin-bottom:16px;min-width:0}
+.card-head{display:flex;justify-content:space-between;align-items:start;gap:15px;margin-bottom:15px}
+.card-sub{color:var(--muted);font-size:12.5px;margin:3px 0 0}
+.stat{background:white;border:1px solid var(--line);border-radius:13px;padding:19px 20px;min-width:0}
+.stat .num{font-size:30px;font-weight:800;letter-spacing:-1px;color:#123b53}
+.stat .lbl{font-size:11px;letter-spacing:.4px;text-transform:uppercase;color:#6c8190;font-weight:760}
+.stat .detail{font-size:11px;color:#82939e}
+.banner{background:var(--goldbg);color:#6d4c19;border:1px solid #f0daaa;border-radius:12px;padding:13px 16px;margin-bottom:21px;display:flex;align-items:start;gap:11px;font-size:12.5px}
+.banner strong{color:#68410a}
+.banner.good{background:#eaf8f3;border-color:#cae9de;color:#326858}
+.section-note{font-size:12px;padding:11px 13px;border-radius:9px;background:#f0f6f9;color:#446273;border:1px solid #dfecf3;margin:12px 0}
+.label{font-size:12px;color:#324b5a;font-weight:770;display:block;margin-bottom:6px}
+.field{margin:0 0 17px;min-width:0}
+.field:last-child{margin-bottom:0}
+.field-hint{color:#7d8b96;font-size:11px;margin:4px 0 0}
+.input,textarea,select{border:1px solid #cfdde5;border-radius:9px;background:white;color:#21394b;padding:11px 13px;width:100%;outline:none;font-size:13px;line-height:1.55}
+textarea{resize:vertical;min-height:76px}
+textarea.code{font:12px/1.6 ui-monospace,Consolas,Monaco,monospace;color:#253d51;background:#f9fbfd;min-height:104px}
+.input:focus,textarea:focus,select:focus{border-color:#0e8d81;box-shadow:0 0 0 3px #d9f2ec}
+textarea.bullets{min-height:95px}
+.inline{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.hline{height:1px;background:var(--line);margin:20px 0}
+.tag{font-size:10px;border-radius:99px;background:#eff3f6;color:#5b7080;padding:4px 9px;font-weight:750;display:inline-block}
+.tag.ok{background:#e4f7ed;color:#287657}
+.tag.pending{background:#fff4df;color:#8d641b}
+.tag.info{background:#e9f1fb;color:#386b97}
+.table-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:11px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:550px}
+th{background:#f6f8fa;color:#5a6b79;font-size:10.5px;text-transform:uppercase;letter-spacing:.55px;font-weight:800;text-align:left;padding:12px 13px;border-bottom:1px solid #e1e8ed}
+td{padding:13px;border-bottom:1px solid #edf1f4;vertical-align:top;color:#2d4252}
+tr:last-child td{border-bottom:0}
+td .input,td textarea,td select{font-size:12px;padding:7px 9px}
+td textarea{min-height:58px}
+.step{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.step-num{width:31px;height:31px;border-radius:9px;background:#e4f3f1;display:grid;place-items:center;color:var(--teal);font-weight:800}
+.muted{color:var(--muted)}
+.mini{font-size:11px;color:#81909b}
+.empty{border:1px dashed #bfd3df;background:#f8fbfd;border-radius:12px;padding:25px;text-align:center;color:#536d80}
+.empty .big{font-size:34px;display:block;margin-bottom:9px}
+.search-card{background:#f7fbfc;border:1px solid #deebef;border-radius:11px;padding:14px 16px;margin-bottom:10px}
+.search-card code{font:12px/1.5 ui-monospace,Consolas,Monaco,monospace;overflow-wrap:anywhere;display:block;margin:10px 0;color:#385064}
+.paper{border:1px solid var(--line);padding:15px;border-radius:11px;margin-bottom:9px}
+.paper-title{font-size:13px;font-weight:780;color:#213d53;line-height:1.5}
+.paper-brief{font-size:11.5px;color:var(--muted);margin-top:4px}
+.paper p{font-size:12px;color:#667582}
+.paper.selected{border-color:var(--tealLine);background:#f7fffc}
+.notice{background:#f8fafb;color:#537082;padding:14px 16px;border:1px solid #e2e9ec;border-radius:11px;font-size:12px}
+.flow{display:flex;align-items:center;gap:8px;overflow-x:auto;padding:13px 0}
+.flow-node{min-width:165px;max-width:230px;flex:1;background:#f0f7fa;border:1px solid #c9e1e7;text-align:center;border-radius:12px;padding:16px;font-size:12px;font-weight:700;color:#255066}
+.flow-arrow{font-size:22px;color:#789dad}
+footer{font-size:11px;color:#95a3ae;text-align:center;margin-top:25px}
+.cover-shell{min-height:100vh;background:radial-gradient(ellipse at top right,#e1f4f1 0,#f6f8fb 44%,#f6f8fb 100%);display:flex;align-items:center;justify-content:center;padding:35px}
+.setup{width:min(960px,100%);display:grid;grid-template-columns:1fr 1.03fr;background:white;border-radius:25px;overflow:hidden;border:1px solid #dce7e9;box-shadow:0 25px 70px rgba(9,42,62,.11)}
+.setup-aside{background:linear-gradient(160deg,#0c304a,#0a5260);color:white;padding:54px 46px;position:relative;overflow:hidden}
+.setup-aside::after{content:"";position:absolute;width:400px;height:400px;border:1px solid rgba(255,255,255,.1);border-radius:50%;right:-240px;bottom:-200px;box-shadow:0 0 0 68px rgba(255,255,255,.035),0 0 0 150px rgba(255,255,255,.022)}
+.setup-mark{display:inline-flex;align-items:center;gap:11px;font-size:15px;letter-spacing:-.3px;font-weight:790;margin-bottom:75px}
+.setup-mark span{width:32px;height:32px;background:#1cd4bb;color:#0c3450;display:grid;place-items:center;border-radius:10px;font-weight:900}
+.setup-aside h1{color:white;font-size:40px;line-height:1.15;letter-spacing:-1.9px;margin-bottom:19px}
+.setup-aside p{color:#b7d4dc;font-size:14px;line-height:1.85}
+.setup-steps{display:grid;gap:17px;margin-top:48px;color:#daeeee;font-size:12px}
+.setup-steps span{display:flex;align-items:center;gap:11px}
+.setup-steps b{background:#286378;color:#c9f8ec;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;font-size:11px}
+.setup-form{padding:52px 47px}
+.setup-form h2{font-size:27px;font-weight:850;letter-spacing:-1px}
+.setup-form .form-sub{font-size:13px;color:#778793;margin:5px 0 25px}
+.rounds{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:21px}
+.round-opt{border:1px solid #d9e3e9;background:#fff;border-radius:10px;padding:12px 8px;text-align:center;font-size:12px;font-weight:780;color:#506674}
+.round-opt[aria-pressed="true"]{background:#e7f9f3;border-color:#0e8e79;color:#0b786b;box-shadow:0 0 0 1px #0e8e79 inset}
+.setup-btn{width:100%;margin-top:7px;font-size:14px;padding:14px}
+.setup-foot{font-size:11px;color:#86939c;text-align:center;margin-top:15px}
+.success-circle{background:#e5f8f1;color:#17765c;border-radius:10px;padding:12px 14px;font-size:12px}
+.mobile-toggle{display:none}
+@media(max-width:1100px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.content{padding:30px 25px 60px}.topbar{padding:12px 25px}.sidebar{padding:25px 12px}.shell{grid-template-columns:218px 1fr}}
+@media(max-width:790px){.shell{display:block}.sidebar{position:static;min-height:unset;max-height:none;padding:12px 16px}.brand{padding:0}.brand-sub,.nav-label,.sidebar-bottom{display:none}.nav-menu{display:flex;overflow-x:auto;margin-top:9px;gap:6px}.nav-item{width:auto;white-space:nowrap;padding:9px}.nav-icon{display:none}.topbar{min-height:60px;padding:10px 17px}.content{padding:25px 16px 60px}.g2,.g3{grid-template-columns:1fr}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.page-head{align-items:start}.hero{padding:18px}.setup{grid-template-columns:1fr}.setup-aside{padding:29px 31px}.setup-aside h1{font-size:30px}.setup-aside .setup-steps{display:none}.setup-mark{margin-bottom:15px}.setup-form{padding:30px 29px}.setup-aside p{margin-bottom:0}}
+@media(max-width:480px){.g4{grid-template-columns:1fr}.topbar{flex-wrap:wrap}.top-actions{width:100%}.top-actions .btn{flex:1}.page-head{display:block}.setup-form{padding:25px 20px}.setup-aside{padding:25px 20px}.content{padding:21px 13px}.card{padding:16px}.hero .icon-round{display:none}h1{font-size:24px}}
+
+/* Guided navigation and accessible keyboard states */
+.stage-nav{margin-top:26px;padding:19px 23px;background:linear-gradient(105deg,#e8f4f2,#f7fafb);border:1px solid #cfe6e2;border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.stage-label{display:block;letter-spacing:1.1px;color:#0b8177;font-size:10px;font-weight:800}
+.stage-title{font-size:15px;font-weight:800;color:#123348;margin:3px 0 4px}
+.nav-item:focus-visible,.btn:focus-visible,.round-opt:focus-visible,a:focus-visible{outline:3px solid #43d0bd;outline-offset:2px}
+@media(max-width:790px){.nav-menu{scrollbar-width:thin;scrollbar-color:#46758a transparent}.stage-nav{flex-direction:column;align-items:stretch;padding:17px}}
+@media(max-width:480px){.stage-nav .inline .btn{flex:1}.stage-nav .inline{display:flex;flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* CAT Copilot — responsive, accessible side conversation */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.ai-top-button{border-color:#b3e5dc!important;background:#eef9f6!important;color:#117d70!important;font-weight:750!important}
+.cat-chat-launcher{position:fixed;right:23px;bottom:24px;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0a746d,#063d58);color:#fff;border:0;border-radius:26px;padding:14px 19px;box-shadow:0 12px 32px rgba(0,45,55,.25);font-size:13px;font-weight:800;z-index:104;transition:transform .18s ease,box-shadow .18s ease}
+.cat-chat-launcher:hover{transform:translateY(-2px);box-shadow:0 17px 32px rgba(0,45,55,.3)}
+.cat-chat-launcher.is-open{background:#173b50}
+.cat-chat-launcher:focus-visible,.cat-chat-panel button:focus-visible,.cat-chat-panel select:focus-visible,.cat-chat-panel textarea:focus-visible{outline:3px solid #6ee3cf;outline-offset:3px}
+.cat-chat-panel{position:fixed;bottom:88px;right:23px;width:min(428px,calc(100vw - 32px));height:min(695px,calc(100dvh - 124px));background:white;border:1px solid #d6e3e7;border-radius:19px;box-shadow:0 26px 80px rgba(8,42,63,.25);z-index:103;display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(14px) scale(.985);pointer-events:none;transition:opacity .22s ease,visibility .22s ease,transform .22s ease}
+.cat-chat-panel.is-open{opacity:1;visibility:visible;transform:translateY(0) scale(1);pointer-events:auto}
+.cat-chat-head{padding:16px 17px;display:flex;align-items:center;gap:11px;background:#10334d;color:#fff}
+.cat-chat-head strong{font-size:14px;letter-spacing:-.2px}
+.cat-chat-avatar{width:40px;height:40px;flex:none;display:grid;place-items:center;background:#17665e;border:1px solid #6fa7a2;border-radius:13px;color:#d5fff4;font-size:21px}
+.cat-chat-status{font-size:10.5px;color:#b7d2dc;margin-top:2px;display:flex;align-items:center;gap:6px}
+.cat-chat-dot{width:7px;height:7px;border-radius:50%;background:#e7b565}.cat-chat-dot.online{background:#59e2a5}
+.cat-chat-top-actions{margin-left:auto;display:flex;gap:5px}.cat-chat-top-actions button{background:transparent;border:1px solid #41677a;color:#d3e9ec;border-radius:9px;width:31px;height:31px;font-size:19px}
+.cat-chat-privacy{padding:10px 15px;background:#f4faf9;font-size:10.7px;line-height:1.5;color:#577078;border-bottom:1px solid #e1eeee}
+.cat-chat-messages{flex:1;overflow:auto;min-height:0;padding:17px;background:linear-gradient(180deg,#fff,#fbfdfd)}
+.cat-chat-welcome{text-align:center;color:#647884;padding:37px 16px 16px}
+.cat-chat-welcome h3{margin:8px 0;color:#173c4d;font-size:18px}
+.cat-chat-welcome p{max-width:290px;margin:auto;line-height:1.65;font-size:12px}
+.cat-chat-hero{margin:auto;width:48px;height:48px;display:grid;place-items:center;border-radius:17px;background:#e4f8f2;color:#087b6b;font-size:25px}
+.cat-chat-message{max-width:100%;margin:0 0 15px}.cat-chat-role{font-size:10px;font-weight:800;color:#6b8590;display:block;margin:0 0 5px}
+.cat-chat-message.from-user{margin-left:28px}.cat-chat-message.from-user .cat-chat-role{text-align:right}.cat-chat-message.from-ai{margin-right:22px}
+.cat-chat-bubble{font-size:12.5px;line-height:1.65;padding:12px 13px;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere;background:#eff5f7;color:#1b3d4c;border:1px solid #e0ebef}
+.from-user .cat-chat-bubble{background:#e4f8f3;border-color:#b5e3d8;color:#155b53}
+.cat-chat-thinking{opacity:.65;font-style:italic}
+.cat-chat-apply{margin-top:6px;padding:6px 11px;background:#e5f7ee;border:1px solid #afe0c9;border-radius:8px;color:#0c7363;font-size:11px;font-weight:780}
+.cat-chat-prompt-row{display:flex;gap:6px;padding:9px 13px;overflow-x:auto;border-top:1px solid #e9edef;scrollbar-width:thin}
+.cat-chat-prompt-row button{white-space:nowrap;font-size:10px;color:#2c6770;background:#f0f7f8;border:1px solid #d5e8eb;border-radius:20px;padding:6px 10px}
+.cat-chat-compose{padding:11px 14px 14px;border-top:1px solid #e1eaef;background:#fff}
+.cat-chat-compose label{font-size:10.5px;font-weight:750;color:#536d7a;display:block;margin:0 0 5px}
+.cat-chat-compose select{font-size:11px;padding:8px 11px;margin-bottom:9px;max-width:100%;border:1px solid #d5e4e9;border-radius:9px}
+.cat-chat-compose textarea{font-size:12px;min-height:68px;max-height:130px;resize:vertical;margin:0;border-color:#cfdee6;padding:10px 12px}
+.cat-chat-send-row{display:flex;gap:7px;align-items:center;margin-top:9px}.cat-chat-send-row span{font-size:9.7px;color:#8196a0;flex:1;line-height:1.35}
+.cat-chat-copy,.cat-chat-send{font-size:11px;font-weight:800;border:1px solid #c7dce1;padding:9px 11px;border-radius:9px;white-space:nowrap}
+.cat-chat-copy{color:#315d6c;background:#f7fbfc}.cat-chat-send{background:#0a766f;border-color:#0a766f;color:white}
+.cat-chat-send:disabled{opacity:.45;cursor:not-allowed}.cat-chat-error{font-size:11px;color:#a52c38;padding:5px 2px}
+@media(max-width:620px){.cat-chat-panel{width:100vw;height:calc(100dvh - 65px);max-height:none;bottom:0;right:0;border-radius:16px 16px 0 0}.cat-chat-launcher{right:13px;bottom:12px;padding:10px 14px;z-index:104}.cat-chat-launcher.is-open{display:none}.cat-chat-head{padding:12px 14px}.cat-chat-messages{padding:12px}.cat-chat-compose{padding:8px 11px 12px}.cat-chat-prompt-row{padding:7px 9px}}
+@media(prefers-reduced-motion:reduce){.cat-chat-launcher,.cat-chat-panel{transition:none!important}}
+
+/* Auto-Research: research workflow and evidence cards */
+.auto-top-button{border-color:#c1dce7!important;color:#0f536a!important;background:#edf7fa!important;font-weight:770!important}
+.auto-home-cta{margin:0 0 21px;padding:25px 27px;background:linear-gradient(110deg,#10334c,#145c66 80%,#13786d);border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:white;box-shadow:0 9px 24px #10334c16}
+.auto-home-cta h2{font-size:21px;line-height:1.35;color:#fff;letter-spacing:-.45px;margin:7px 0}
+.auto-home-cta p{font-size:12px;color:#cee9e6;max-width:600px;line-height:1.65}
+.auto-home-cta .kicker{color:#77e8d4}.auto-home-cta .btn{flex:none;background:#e7fff7!important;color:#0b5c57!important;border-color:#e7fff7!important}
+.auto-intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(250px,.85fr);gap:27px;padding:31px 34px;border-radius:20px;background:radial-gradient(circle at 5% 5%,#1b6672,#0d3049 65%,#092a42);color:white;margin:0 0 20px;position:relative;overflow:hidden;box-shadow:0 12px 32px rgba(20,52,69,.09)}
+.auto-intro::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid #ffffff12;right:-140px;top:-200px;pointer-events:none}
+.auto-intro-left{position:relative;z-index:1}
+.auto-intro .kicker{color:#74e6cf}.auto-intro h2{color:white;font-size:28px;line-height:1.2;letter-spacing:-.7px;margin:10px 0}.auto-intro h2 span{color:#65dcc8}.auto-intro p{color:#bbd7e0;font-size:12.5px;line-height:1.75;max-width:450px}.auto-intro p b{color:white}
+.auto-intro small{display:block;font-size:10.5px;color:#b2cad0;line-height:1.5;margin-top:13px}
+.auto-intro-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:17px}.auto-intro .btn{padding:11px 16px}.auto-intro .btn:not(.primary){color:#e6f5f4;background:#ffffff10;border-color:#ffffff40}
+.auto-steps{position:relative;z-index:1;display:grid;gap:13px;align-content:center}.auto-step{display:flex;align-items:center;gap:13px;padding:13px 15px;border:1px solid #ffffff21;background:#ffffff08;border-radius:12px;color:#a8c7d1}.auto-step span{flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:10px;font-weight:850;background:#ffffff1c;color:#9be8d8}.auto-step strong{font-size:12px;color:white;display:block}.auto-step small{font-size:10px;color:#b8cfd5;display:block;margin:1px 0}.auto-step b{margin-left:auto;color:#74e5ca}.auto-step.done{border-color:#51c5ac70;background:#3abf9e15}.auto-step.active{border-color:#c6dac5;background:#d0f9e515}
+.auto-live{margin-bottom:18px;background:#e8f7f1;border:1px solid #c4eada;padding:14px 17px;border-radius:12px;display:flex;align-items:center;gap:12px;color:#116456}.auto-live>span{font-size:22px}.auto-live strong{font-size:12px}.auto-live small{display:block;font-size:10.5px;color:#568176;margin-top:2px}.auto-live.is-loading>span{animation:auto-turn 1.15s linear infinite}@keyframes auto-turn{to{transform:rotate(360deg)}}
+.auto-alert{background:#fff5e8;border:1px solid #f3dbb6;color:#99580e;padding:9px 15px;border-radius:10px;font-size:11px;line-height:1.5;margin-bottom:15px}.auto-alert p{margin:5px 0}
+.auto-metrics{margin-bottom:19px}.auto-query-list{display:grid;gap:7px;margin-top:15px}.auto-query-row{padding:11px 0;border-bottom:1px solid #edf2f3;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 13px;font-size:11px}.auto-query-row span{overflow-wrap:anywhere;color:#315567}.auto-query-row strong{color:#0f6d62;white-space:nowrap}.auto-query-row small{grid-column:1/-1;color:#b26425}.auto-empty-small{margin:13px 0;padding:20px 10px;background:#f5fafb;color:#7c929b;border-radius:10px;font-size:12px}.auto-block-actions{margin-top:17px;flex-wrap:wrap}
+.auto-action-grid{display:grid;gap:12px;margin-top:12px}.auto-action-grid>div{padding:10px 11px;border:1px solid #e7eff1;border-radius:10px;background:#fbfdfd}.auto-action-grid b{font-size:12px;color:#193d52}.auto-action-grid p{font-size:11px;color:#778a94;line-height:1.5;margin:3px 0 8px}
+.auto-library .card-head{align-items:center;gap:15px;flex-wrap:wrap}.auto-filters{display:flex;gap:6px;flex-wrap:wrap}.auto-filter{border:1px solid #d9e6e9;background:#fff;padding:7px 10px;border-radius:9px;font-size:10.5px;font-weight:700;color:#51707b}.auto-filter.is-on{background:#e4f6f0;color:#0d7766;border-color:#a9daca}
+.auto-paper{border:1px solid #e3ebee;border-radius:13px;background:white;padding:17px;margin-top:11px;transition:border-color .2s ease,box-shadow .2s ease}.auto-paper.is-selected{border-color:#79c8b5;background:#fbfffc;box-shadow:0 0 0 1px #b9e5d6 inset}.auto-paper-main{display:grid;grid-template-columns:84px minmax(0,1fr);gap:16px}.auto-check{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:10.5px;font-weight:800;color:#236f63;padding-top:7px}.auto-check input{width:19px;height:19px;accent-color:#0e8070;cursor:pointer}.auto-paper-heading{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:7px}.ref-chip{font-size:9px;background:#ecf3fa;color:#42627b;border-radius:5px;padding:4px 6px;font-weight:800}.auto-paper h3{font-size:14.5px;line-height:1.55;margin:0 0 6px;color:#143a4b;letter-spacing:-.15px}.auto-source-line{color:#7a8c96;font-size:11.5px;line-height:1.6}.auto-abstract{font-size:11.5px;line-height:1.72;color:#536d77;margin:9px 0}.auto-screening{border-left:3px solid #69bcad;background:#eefaF6;padding:8px 11px;font-size:11px;color:#236d61;line-height:1.65;border-radius:0 7px 7px 0}.auto-paper-links{display:flex;flex-wrap:wrap;gap:7px 15px;margin-top:10px;font-size:10px;color:#8a9aa3}.auto-paper-links a{color:#0e8176;text-decoration:none;font-weight:750}.auto-paper-links a:hover{text-decoration:underline}.auto-empty{text-align:center;padding:38px 12px;color:#708995}.auto-empty>span{font-size:34px;display:block;color:#59879d}.auto-empty strong{display:block;font-size:14px;color:#275366}.auto-empty p{font-size:11px;margin-top:4px}
+.auto-draft-note{padding:10px 13px;background:#fff8e9;border:1px solid #f5dfb6;color:#92622a;font-size:11px;border-radius:10px;line-height:1.7;margin-top:14px}.auto-draft-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 18px}.auto-draft-field{border:1px solid #e1eaf0;background:#fcfefe;padding:15px;border-radius:11px}.auto-draft-field strong{font-size:12px;color:#1b485b}.auto-draft-field .row-between{gap:8px;align-items:start}.auto-draft-field .row-between .btn{flex:none}.auto-draft-field ul{margin:10px 0 0;padding-left:17px;font-size:11.5px;color:#486671;line-height:1.75}.auto-draft-field li{margin:4px 0}
+.auto-footer-note{padding:17px 20px;background:#f2f8f9;border:1px solid #dae9e9;color:#57737d;border-radius:13px;font-size:11.5px;line-height:1.8;margin:19px 0}.auto-footer-note strong{color:#244f5e}
+@media(max-width:1100px){.auto-intro{grid-template-columns:1fr}.auto-steps{grid-template-columns:repeat(3,minmax(0,1fr))}.auto-step{padding:10px;gap:8px}.auto-step>div small{font-size:9px}}
+@media(max-width:790px){.auto-home-cta{flex-direction:column;align-items:stretch}.auto-intro{padding:24px}.auto-intro h2{font-size:25px}.auto-steps{grid-template-columns:1fr}.auto-step{padding:12px}.auto-draft-grid{grid-template-columns:1fr}.auto-paper-main{grid-template-columns:1fr;gap:5px}.auto-check{flex-direction:row;align-items:center;padding:0}.auto-home-cta .btn{align-self:start}}
+@media(max-width:480px){.auto-intro{padding:22px 17px}.auto-intro-actions{flex-direction:column;align-items:stretch}.auto-intro-actions .btn{width:100%}.auto-filters{width:100%;overflow-x:auto;flex-wrap:nowrap}.auto-filter{white-space:nowrap}.auto-paper{padding:12px}.auto-paper-heading .tag{font-size:9px}.auto-paper-links{gap:6px}.auto-draft-field .row-between{flex-direction:column;align-items:stretch}.auto-top-button{display:none}}
+
+</style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="cat-assistant-root"></div>
+  <input type="file" id="import-work" hidden accept=".json,application/json" />
+  <input type="file" id="import-ris" hidden accept=".ris,.txt,.json" multiple />
+  <script>
+'use strict';
+/* CAT Auto-Research UI: evidence-led discovery, provisional screening and confirmed draft application.
+ * Loaded before app.js; functions execute after app.js has created the shared workspace state. */
+function autoFresh(){return {status:'idle',phase:'',records:[],queries:[],filter:'all',errors:[],screened:false,screen_model:'',draft:null,draft_model:'',searched_at:'',last_transfer:0};}
+function autoState(){if(!S.auto||typeof S.auto!=='object')S.auto=autoFresh();return S.auto;}
+function safeExternalURL(value){try{const u=new URL(String(value||''));return /^https?:$/.test(u.protocol)?u.href:'';}catch{return '';}}
+function autoTag(record){
+ const st=record.screening?.status;
+ const labels={possible:'Possible match',unclear:'Needs checking',unlikely:'Likely out of scope'};
+ return st?`<span class="tag ${st==='possible'?'ok':st==='unlikely'?'pending':'info'}">${labels[st]}</span>`:'<span class="tag pending">Not screened</span>';
+}
+function autoCount(st){return autoState().records.filter(r=>r.screening?.status===st).length;}
+function autoSelected(){return autoState().records.filter(r=>r.shortlisted);}
+function autoRender(){
+ const a=autoState(),d=S.model;
+ const working=a.phase==='discovering'||a.phase==='screening'||a.phase==='drafting';
+ const visible=a.records.filter(p=>a.filter==='all'||(a.filter==='shortlisted'&&p.shortlisted)||p.screening?.status===a.filter);
+ const searched=a.queries.length>0;
+ const queryRows=a.queries.map(q=>`<div class="auto-query-row"><span>${esc(q.query)}</span><strong>${q.error?'Unavailable':typeof q.count==='number'?q.count.toLocaleString()+' hits':'Not reported'}</strong>${q.error?`<small role="alert">${esc(q.error)}</small>`:''}</div>`).join('');
+ const papers=visible.map(p=>{
+  const link=safeExternalURL(p.url);
+  return `<article class="auto-paper ${p.shortlisted?'is-selected':''}">
+     <div class="auto-paper-main"><label class="auto-check"><input type="checkbox" data-auto-check="${esc(p.ref_id)}" ${p.shortlisted?'checked':''} aria-label="Shortlist ${esc(p.title)}"><span>Shortlist</span></label>
+     <div class="auto-paper-body"><div class="auto-paper-heading"><span class="ref-chip">${esc(p.ref_id)}</span>${autoTag(p)}<span class="tag info">${esc(String(p.year||'Year unknown'))}</span></div>
+     <h3>${esc(p.title||'Untitled')}</h3><div class="auto-source-line">${esc((p.authors||[]).slice(0,3).join(', ')||'Authors not provided')} · ${esc(p.journal||'Journal not confirmed')}</div>
+     ${p.abstract?`<p class="auto-abstract">${esc(p.abstract.slice(0,650))}${p.abstract.length>650?'…':''}</p>`:'<p class="auto-abstract muted">Abstract unavailable: title-only appraisal would be unreliable.</p>'}
+     ${p.screening?.reason?`<div class="auto-screening"><b>Preliminary screen:</b> ${esc(p.screening.reason)}${p.screening.design_hint?` · <i>Possible design: ${esc(p.screening.design_hint)}</i>`:''}</div>`:''}
+     <div class="auto-paper-links">${p.doi?`<span>DOI: ${esc(p.doi)}</span>`:''}${link?`<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">View source ↗</a>`:''}<span>${esc(p.source||'OpenAlex')} metadata · peer review unverified</span></div></div></div>
+  </article>`;
+ }).join('');
+ const draft=a.draft?.fields;
+ const draftPaths={decision_issue:'s1_1.decision_issue',application_context:'s1_1.application_context',selection_note:'s2_3.selection_note',conclusion:'s4_1.conclusion',key_findings:'s4_1.key_findings',boundary_conditions:'s4_1.boundary_conditions',conflicting_findings:'s4_1.conflicting_findings',weaknesses:'s4_3.weaknesses',credibility_reason:'s4_3.credibility_reason'};
+ const draftLabels={decision_issue:'1.1 Decision issue',application_context:'1.1 Application context',selection_note:'2.3 Screening rationale',conclusion:'4.1 Conclusion',key_findings:'4.1 Key findings',boundary_conditions:'4.1 Boundary conditions',conflicting_findings:'4.1 Conflicting findings',weaknesses:'4.3 CAT weaknesses',credibility_reason:'4.3 Credibility rationale'};
+ return `${head('AI research workspace','From question to evidence-backed draft','One guided pipeline: discover published records, screen abstracts provisionally, then prepare editable CAT text. Every source remains inspectable.')}
+ <div class="auto-intro"><div class="auto-intro-left"><span class="kicker">RESEARCH WORKFLOW</span><h2>Research intelligently.<br><span>Verify confidently.</span></h2><p>Uses your existing <b>topic + CAT question</b>. No new form to complete. Academic findings are not assumed from search hits.</p><div class="auto-intro-actions"><button class="btn primary" data-action="auto-run" ${working?'disabled':''}>${a.phase==='discovering'?'Searching sources…':a.phase==='screening'?'AI screening…':'✦ Run Auto-Research'}</button><button class="btn" data-action="nav" data-section="question">Review PICOC ↗</button></div><small>Live discovery requires the local server and an internet connection. AI screening and drafting require a server-side OpenAI API key.</small></div>
+  <div class="auto-steps"><div class="auto-step ${searched?'done':working?'active':''}"><span>01</span><div><strong>Discover</strong><small>Real bibliographic records + DOI</small></div><b>${searched?'✓':''}</b></div><div class="auto-step ${a.screened?'done':a.phase==='screening'?'active':''}"><span>02</span><div><strong>Screen</strong><small>AI preliminary relevance, not appraisal</small></div><b>${a.screened?'✓':''}</b></div><div class="auto-step ${draft?'done':a.phase==='drafting'?'active':''}"><span>03</span><div><strong>Draft & review</strong><small>Confirm each change to your CAT</small></div><b>${draft?'✓':''}</b></div></div></div>
+ ${a.phase?`<div class="auto-live ${working?'is-loading':''}" role="status"><span>${working?'◌':'✓'}</span><div><strong>${esc(a.status)}</strong><small>${esc(a.phase==='discovering'?'Retrieving real metadata from OpenAlex.':a.phase==='screening'?'Checking abstracts with the optional AI service.':a.phase==='drafting'?'Preparing a provisional answer with cited source IDs.':'Your current research snapshot is saved locally.')}</small></div></div>`:''}
+ ${a.errors.length?`<div class="auto-alert" role="alert">${a.errors.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}
+ <div class="grid g4 auto-metrics"><div class="stat"><div class="lbl">Unique publications</div><div class="num">${a.records.length}</div><div class="detail">Metadata candidates</div></div><div class="stat"><div class="lbl">Possible relevance</div><div class="num">${autoCount('possible')}</div><div class="detail">Preliminary only</div></div><div class="stat"><div class="lbl">Need full review</div><div class="num">${autoCount('unclear')+a.records.filter(r=>!r.screening).length}</div><div class="detail">Not yet appraised</div></div><div class="stat"><div class="lbl">Shortlisted</div><div class="num">${autoSelected().length}</div><div class="detail">For editorial review</div></div></div>
+ <div class="grid g2"><div class="card"><div class="card-head"><div><h2>Executed public discovery</h2><p class="card-sub">${a.searched_at?'Search date: '+esc(a.searched_at.slice(0,10)):'Searches are not yet executed.'}</p></div><span class="tag ${searched?'ok':'pending'}">${searched?'OpenAlex':'Not run'}</span></div>${searched?`<div class="auto-query-list">${queryRows}</div><p class="mini">Hit counts belong ONLY to these OpenAlex queries; they must not be recorded as ProQuest, Scopus, or ScienceDirect results. Returned records are capped and deduplicated.</p>`:'<div class="auto-empty-small">Start discovery to record exact source queries and the counts actually reported by OpenAlex.</div>'}<div class="inline auto-block-actions"><button class="btn sm" data-action="auto-record" ${!searched?'disabled':''}>Record OpenAlex steps in §2.2</button><button class="btn sm" data-action="auto-audit" ${!searched?'disabled':''}>↓ Research audit</button></div></div>
+ <div class="card"><div class="card-head"><div><h2>Next actions</h2><p class="card-sub">Keep each step separate and accountable.</p></div></div><div class="auto-action-grid"><div><b>AI screen the publications</b><p>Rates title/abstract relevance, not causal effect or evidence quality.</p><button class="btn sm" data-action="auto-screen" ${!a.records.length||working?'disabled':''}>✦ Screen with AI</button></div><div><b>Create CAT prose draft</b><p>Uses only your shortlisted sources; never fabricates effect sizes or database hits.</p><button class="btn sm" data-action="auto-draft" ${!autoSelected().length||working?'disabled':''}>✦ Draft from selected sources</button></div><div><b>Transfer to appraisal</b><p>Add citation records as ungraded evidence; verify full texts before final use.</p><button class="btn sm" data-action="auto-transfer" ${!autoSelected().length||working?'disabled':''}>+ Add shortlisted to §2.3</button></div></div></div></div>
+ <div class="card auto-library"><div class="card-head"><div><h2>Academic source library</h2><p class="card-sub">${visible.length} shown of ${a.records.length} publications. Tick only records worth full-text eligibility checks.</p></div><div class="auto-filters">${[['all','All'],['possible','Possible'],['unclear','Unclear'],['shortlisted','Shortlisted']].map(([v,l])=>`<button class="auto-filter ${a.filter===v?'is-on':''}" data-action="auto-filter" data-filter="${v}">${l}</button>`).join('')}</div></div>
+ ${papers||`<div class="auto-empty"><span>⌕</span><strong>No sources to show</strong><p>${searched?'Try another filter, rerun discovery, or import RIS records in section II.':'Start Auto-Research to retrieve actual academic publication records.'}</p></div>`}</div>
+ ${draft?`<div class="card auto-draft"><div class="card-head"><div><h2>Provisional AI CAT draft</h2><p class="card-sub">From ${a.draft.source_ids?.length||0} selected record(s). Always verify wording, eligibility, and original articles.</p></div><span class="tag pending">Not submission-ready</span></div><div class="auto-draft-note">Suggestions are shown before applying them. No study grades, numerical effects, or unexecuted database counts are filled in automatically.</div><div class="auto-draft-grid">${Object.entries(draft).filter(([k,v])=>draftPaths[k]&&v.length).map(([key,val])=>`<div class="auto-draft-field"><div class="row-between"><strong>${esc(draftLabels[key])}</strong><button class="btn sm" data-action="auto-apply" data-field="${esc(key)}">Apply to form ↗</button></div><ul>${val.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>`).join('')}</div><button class="btn primary" data-action="auto-apply-all">Apply reviewed draft to form</button><p class="mini" style="margin-top:10px">Drafts are editable; applying requires confirmation and never assigns a study evidence level or effect size.</p></div>`:''}
+ <div class="auto-footer-note"><strong>Transparency rule:</strong> OpenAlex provides discovery records; it does not authenticate access to subscribed databases, establish peer review, or substitute for original study appraisal. A completed CAT still requires source verification, correct research design, effect estimates, transparent search logs and a defensible synthesis.</div>`;
+}
+async function autoPost(endpoint,body){const res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});let j={};try{j=await res.json();}catch{}if(!res.ok)throw Error(j.error||`Research service returned HTTP ${res.status}.`);return j;}
+async function autoAvailable(){try{const r=await fetch('/api/health');if(!r.ok)throw Error();const j=await r.json();return j.configured===true;}catch{return false;}}
+function autoQueries(){const g=infer(S.model.meta.topic,S.model.s1_2.question);
+ const text=(g.synI||[]).filter(Boolean),out=(g.synO||[]).filter(s=>!s.includes('screen separately'));
+ return [...new Set([[text[0],out[0]],[text[1]||text[0],out[1]||out[0]],['systematic review',text[0],out[0]]].map(xs=>xs.filter(Boolean).join(' ')))];}
+async function autoRun(){if(!S.model)return;const old=autoState();if(old.records.length&&!confirm('Run academic discovery again? The previous Auto-Research source list and AI draft will be replaced. Current CAT evidence and sections will remain unchanged.'))return;
+ S.auto=autoFresh();const a=autoState();a.phase='discovering';a.status='Searching scholarly metadata';a.errors=[];persist();render();
+ try{
+  const result=await autoPost('/api/research',{topic:S.model.meta.topic,question:S.model.s1_2.question,queries:autoQueries()});
+  a.queries=result.queries||[];a.records=(result.records||[]).map((p,i)=>({...p,ref_id:'R'+(i+1),shortlisted:false,screening:null}));a.searched_at=result.queried_at||new Date().toISOString();a.phase='ready';a.status=`Found ${a.records.length} distinct publication records`;
+  for(const x of a.queries)if(x.error)a.errors.push(`Query “${x.query}” was incomplete: ${x.error}`);
+  // Reuse established metadata library, with DOI/title deduplication; no grade assigned.
+  const keys=new Set(S.library.map(p=>normalizeDoi(p.doi)||String(p.title||'').toLowerCase()));
+  for(const p of a.records){const key=normalizeDoi(p.doi)||p.title.toLowerCase();if(!keys.has(key)){S.library.push(p);keys.add(key);}}
+  persist();render();
+  if(await autoAvailable() && a.records.length)await autoScreen(true);
+ }catch(e){a.phase='error';a.status='Could not retrieve academic records';a.errors.push(e.message+' Start CAT Studio with the local Node server.');persist();render();}
+}
+async function autoScreen(silent=false){const a=autoState();if(!a.records.length)return;a.phase='screening';a.status='AI is reviewing titles and abstracts';persist();render();
+ try{
+  const chunkSize=12,chunks=[];for(let i=0;i<a.records.length;i+=chunkSize)chunks.push(a.records.slice(i,i+chunkSize));
+  let count=0;
+  for(let i=0;i<chunks.length;i++){
+    a.status=`AI screening batch ${i+1} of ${chunks.length}`;persist();render();
+    try{const result=await autoPost('/api/research/screen',{topic:S.model.meta.topic,question:S.model.s1_2.question,records:chunks[i].map(p=>({...p,id:p.ref_id}))});
+      const byId=new Map((result.reviews||[]).map(r=>[r.id,r]));
+      for(const p of chunks[i]){p.screening=byId.get(p.ref_id)||null;if(p.screening&&!a.screened)p.shortlisted=p.screening.status==='possible';}
+      count+=byId.size;a.screen_model=result.model||'';
+    }catch(e){a.errors.push(`Screening batch ${i+1} failed: ${e.message}`);}
+    a.screened=count>0;persist();render();
+  }
+  a.phase='ready';a.status=`AI screened ${count} of ${a.records.length} candidate records; review decisions before inclusion`;
+  if(count<a.records.length)a.errors.push(`${a.records.length-count} record(s) still require manual screening.`);
+  persist();render();if(!silent)showToast('Preliminary screening completed. Review each paper before including it.');
+ }catch(e){a.phase='ready';a.status='Source records available; AI screening unavailable';a.errors.push('AI screening: '+e.message);persist();render();}
+}
+async function autoDraft(){const a=autoState(),pick=autoSelected().slice(0,12);if(!pick.length){showToast('Shortlist at least one source first.');return;}
+ a.phase='drafting';a.status='Generating provisional CAT sections';persist();render();
+ try{const draft=await autoPost('/api/research/draft',{topic:S.model.meta.topic,question:S.model.s1_2.question,records:pick.map(p=>({...p,id:p.ref_id}))});
+  a.draft=draft;a.draft_model=draft.model||'';a.phase='ready';a.status='Draft prepared for review; source verification is still required';persist();render();
+ }catch(e){a.phase='ready';a.status='Draft not generated';a.errors.push('CAT draft: '+e.message);persist();render();}
+}
+function autoTransfer(){const a=autoState(),sel=autoSelected();if(!sel.length)return;
+ if(!confirm(`Add ${sel.length} shortlisted citation records to your CAT evidence list as UNGRADED candidates? They will still require full-text appraisal.`))return;
+ const d=S.model,byDoi=new Set(d.s2_3.evidence.map(e=>normalizeDoi(e.doi)).filter(Boolean));
+ const byTitle=new Set(d.s2_3.evidence.map(e=>String(e.citation||'').toLowerCase()));let n=0;
+ for(const p of sel){const doi=normalizeDoi(p.doi);if(doi&&byDoi.has(doi))continue;if(!doi&&byTitle.has(String(p.title).toLowerCase()))continue;
+  const id=d.s2_3.evidence.reduce((m,e)=>Math.max(m,e.ev_id),0)+1;
+  const names=(p.authors||[]).slice(0,6).join(', ')||'Authors not confirmed';const citation=`${names} (${p.year||'n.d.'}). ${p.title}. ${p.journal||'[journal to verify]'}.${p.doi?' https://doi.org/'+p.doi:''}`;
+  d.s2_3.evidence.push({ev_id:id,band:'',pm:'',lv:'',citation,doi:p.doi||'',comment:`Source: ${p.source||'OpenAlex'} ${p.ref_id}. Preliminary candidate only. Peer review, eligibility, research design and effect sizes require full-text verification.`});
+  if(doi)byDoi.add(doi);n++;
+ }
+ ensureAssessment();a.last_transfer=n;persist();render();showToast(`${n} citation(s) transferred as ungraded evidence candidates.`);
+}
+const AUTO_FIELD_MAP={decision_issue:'s1_1.decision_issue',application_context:'s1_1.application_context',selection_note:'s2_3.selection_note',conclusion:'s4_1.conclusion',key_findings:'s4_1.key_findings',boundary_conditions:'s4_1.boundary_conditions',conflicting_findings:'s4_1.conflicting_findings',weaknesses:'s4_3.weaknesses',credibility_reason:'s4_3.credibility_reason'};
+function autoApply(field,all=false){const a=autoState();if(!a.draft?.fields)return;
+ const fields=all?Object.keys(AUTO_FIELD_MAP):[field];const touched=fields.filter(k=>Array.isArray(a.draft.fields[k])&&a.draft.fields[k].length);
+ if(!touched.length)return;
+ if(!confirm(`Replace ${touched.length} CAT field(s) with provisional, AI-generated text? Previous contents will be overwritten. Study grades, effect sizes, and actual search hit counts are never changed.`))return;
+ for(const k of touched)set(S.model,AUTO_FIELD_MAP[k],a.draft.fields[k]);
+ persist();render();showToast(`${touched.length} draft field(s) applied. Verify the cited source IDs before submission.`);
+}
+function autoRecord(){const a=autoState(),m=S.model;if(!a.queries.length)return;
+ if(!confirm('Record these executed OpenAlex discovery searches in section 2.2? They will be labeled separately from ProQuest, Scopus and ScienceDirect; only observed hit counts will be entered.'))return;
+ let db=m.s2_1.databases.find(x=>x.name==='OpenAlex (discovery index)');
+ if(!db){db={db_id:'DB'+(m.s2_1.databases.length+1),name:'OpenAlex (discovery index)',peer_reviewed:false,language:'No language filter applied',year_range:'All years',reason:'Public discovery index for finding journal candidates; not a peer-reviewed-only database search or a substitute for ProQuest/Scopus.'};m.s2_1.databases.push(db);}
+ let added=0;for(const q of a.queries){if(q.error||typeof q.count!=='number')continue;
+  const code=`OpenAlex works: search=${JSON.stringify(q.query)}; filter=type:article; per_page=15`;
+  if(m.s2_2.steps.some(s=>s.code===code))continue;
+  m.s2_2.steps.push({no:m.s2_2.steps.length+1,code,hits:{[db.db_id]:q.count},final_count:0,result_note:`Executed ${a.searched_at||''}; ${q.count} results reported by OpenAlex for this query. Only up to 15 records retrieved and all query results were deduplicated. Not a full systematic search.`,found_ev_ids:[]});added++;
+ }
+ persist();render();showToast(`${added} OpenAlex search step(s) recorded separately in §2.2.`);
+}
+function autoAudit(){const a=autoState();if(!a.queries.length)return;const report={title:'CAT Studio public academic discovery audit',topic:S.model?.meta.topic,question:S.model?.s1_2.question,source:'OpenAlex',searched_at:a.searched_at,queries:a.queries,source_count:a.records.length,screening_method:a.screened?'AI preliminary abstract-only':'Not performed',caution:'This is not ProQuest/Scopus data, a full systematic review, or a verified effect appraisal.',records:a.records};download('CAT_Studio_research_audit.json',JSON.stringify(report,null,2));}
+function autoFilter(v){const a=autoState();a.filter=v;persist();render();}
+function autoToggle(id,checked){const a=autoState(),p=a.records.find(x=>x.ref_id===id);if(!p)return;p.shortlisted=checked;persist();render();}
+
+</script>
+  <script>
+'use strict';
+/* CAT Studio: offline-first, evidence-transparent drafting companion. No fabricated search results. */
+const $ = sel => document.querySelector(sel);
+const ROOT = $('#app');
+const SAVE_KEY = 'cat_studio_2026_mvp_v1';
+const BANDS = ['A','B','C','D','F'];
+const QUALITY = {A:['+','','-'],B:['+','','-'],C:['+','','-'],D:['+','','-'],F:['']};
+const RDS = ['MA','SR','RCT','DID','QE','NEQ','Long','CC','CS','Case','Qual'];
+const SECTIONS = [
+  ['overview','Overview','⌂'],['auto','AI Auto-Research','✦'],['question','I · Question & PICOC','Ⅰ'],['search','II · Search & sources','Ⅱ'],
+  ['appraisal','III · Evidence appraisal','Ⅲ'],['synthesis','IV · Synthesis','Ⅳ'],['logic','V · Logic model','Ⅴ'],
+  ['decisions','VI · Policy decision','Ⅵ'],['export','References & export','⇩']
+];
+const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slug = s => String(s||'cat').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,45);
+const asLines = s => String(s||'').split('\n').map(s=>s.trim()).filter(Boolean);
+const lines = x => Array.isArray(x) ? x.join('\n') : String(x ?? '');
+const get = (obj,path) => path.split('.').reduce((o,k)=>o==null?undefined:o[k],obj);
+const set = (obj,path,value) => {const p=path.split('.');let o=obj;for(let i=0;i<p.length-1;i++)o=o[p[i]];o[p[p.length-1]]=value;};
+const cap = s=>s?String(s).charAt(0).toUpperCase()+String(s).slice(1):'';
+const quote = s=>'"'+String(s||'').replace(/"/g,'').trim()+'"';
+let S = {model:null, active:'overview', round:'CAT3', library:[], searchLoading:false, alert:''};
+try {const raw=localStorage.getItem(SAVE_KEY);if(raw){const j=JSON.parse(raw);if(j&&typeof j==='object')S={...S,...j,searchLoading:false,alert:''};}} catch(e){}
+function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({...S,searchLoading:false,alert:''}));}catch(e){showToast('Local browser saving is unavailable. Export a JSON backup.');}}
+function showToast(message){let m=$('#toast');if(!m){m=document.createElement('div');m.id='toast';m.style='position:fixed;bottom:20px;right:20px;background:#10334d;color:white;padding:13px 18px;border-radius:12px;z-index:200;max-width:360px;font-size:12px;box-shadow:0 12px 26px #0013';document.body.appendChild(m);}m.textContent=message;setTimeout(()=>m&&m.remove(),4500);}
+function infer(topic,question){
+ const q=String(question||'').trim().replace(/[?.]+$/,'');
+ let iv='', ov='', population='', context='';
+ let m=q.match(/^(?:does|do|can|will|did)\s+(.+?)\s+(increase|decrease|improve|reduce|affect|enhance|change|influence|raise|lower|mitigate|promote)\s+(.+)$/i);
+ if(m){iv=m[1];ov=m[3];}
+ if(!m){m=q.match(/^(?:what is|what are)\s+(?:the\s+)?(?:effect|impact|effectiveness|influence)\s+of\s+(.+?)\s+on\s+(.+)$/i);if(m){iv=m[1];ov=m[2];}}
+ if(!iv){iv=String(topic||'').split(/\s+(?:and|versus|on|vs)\s+/i)[0]||'policy intervention (specify)';ov='specified policy outcome (clarify from question)';}
+ const p=ov.match(/\s+(?:among|for)\s+(.+)$/i);
+ if(p){population=p[1];ov=ov.slice(0,p.index).trim();}
+ const c=ov.match(/\s+(?:in the context of|within|in)\s+(.+)$/i);
+ if(c){context=c[1];ov=ov.slice(0,c.index).trim();}
+ const pi=iv.match(/\s+(?:among|for)\s+(.+)$/i);if(pi){population=population||pi[1];iv=iv.slice(0,pi.index).trim();}
+ let t=String(topic||'');
+ if(!context && /low[- ]fertility|low birth rate/i.test(t))context='low-fertility settings';
+ if(!context && /public sector|government|civil servants/i.test(t))context='public-sector institutions';
+ if(!context && /south korea|korean/i.test(t))context='South Korea';
+ if(!context)context='setting to be defined';
+ if(!population)population='target population to be specified';
+ iv=iv.replace(/^the\s+/i,'').trim();ov=ov.replace(/^the\s+/i,'').trim();
+ const isMaternity=/maternity|parental leave|family leave/i.test(t+' '+iv);
+ const isFertility=/fertility|childbear|birth|having a child/i.test(t+' '+ov);
+ const isRemote=/telework|remote work|work from home/i.test(t+' '+iv);
+ const isAI=/artificial intelligence|digital technology|government.*ai/i.test(t+' '+iv);
+ const isCorrupt=/corruption|bribery|civil.service pay/i.test(t+' '+ov);
+ const synI=isMaternity?['paid maternity leave','maternity leave entitlement','maternity benefits','paid parental leave','parental leave policy','family leave']:
+ isRemote?['remote work','telework','working from home','flexible work arrangements']:
+ isAI?['artificial intelligence','AI adoption','digital government','machine learning','digital technology']:
+ isCorrupt?['public sector pay','wage reform','salary increase','civil service remuneration']:[iv,iv.replace(/\s+policy\b/,'').trim()].filter(Boolean);
+ const synO=isFertility?['fertility','childbearing','actual childbirth','birth probability','subsequent birth','fertility intentions (screen separately)']:
+ isCorrupt?['corruption','bribery','misconduct','integrity']:[ov,ov.replace(/\slikelihood of /i,'')].filter(Boolean);
+ const popTerms=/employed women/i.test(population)?[population,'working women','female employees','women of reproductive age']:
+ /civil servant/i.test(population)?[population,'public employees','government workers']:[population];
+ const outcome=isFertility?'fertility / childbearing in the defined setting':`longer-term consequences of ${ov} (to be established)`;
+ return {iv,ov,population,context,outcome,synI:[...new Set(synI)],synO:[...new Set(synO)],popTerms:[...new Set(popTerms)],isFertility,isMaternity};
+}
+function qTerms(arr,max=4){return '('+arr.filter(x=>x && !/specify|established/i.test(x)).slice(0,max).map(quote).join(' OR ')+')';}
+function makeSearches(g){
+ const i=qTerms(g.synI,4),o=qTerms(g.synO.filter(x=>!x.includes('screen separately')),4);
+ const wide=`AB(${i} AND ${o})`;
+ return [
+  {code:`AB(${quote(g.synI[0])} AND ${quote(g.synO[0])})`,note:'Narrow baseline; proposed, not executed.'},
+  {code:wide,note:'Expand input and output synonyms; proposed, not executed.'},
+  {code:`AB(${i} AND ${o} AND ("systematic review" OR "meta-analysis"))`,note:'Find systematic reviews and meta-analyses; proposed, not executed.'},
+  {code:`AB(${i} AND ${o} AND ("quasi-experimental" OR "difference-in-differences" OR "regression discontinuity" OR "randomized"))`,note:'Find stronger primary designs; proposed, not executed.'},
+  {code:`AB(${i} AND ${o} AND (${quote(g.context)} OR "policy reform" OR "natural experiment"))`,note:'Check context/implementation literature; proposed, not executed.'}
+ ];
+}
+function recommendation(headline,actions){return {headline,ev_ids:[],actions:actions.map(text=>({text,ev_ids:[]}))};}
+function newModel(topic,question,round){
+ const g=infer(topic,question);
+ const contextSpecific=g.context==='setting to be defined'?'[specify the jurisdiction or policy setting]':g.context;
+ const model={
+ schema_version:'1.2',
+ meta:{round,work_mode:round==='CAT3'?'individual':'group',topic,cat_question_short:question,group_no:round==='CAT3'?null:'',date_label:'Fall 2026',members:[{member_id:'m1',name:'',email:''}],course:'Evidence-based public policy and management',institution:'GSPA, Seoul National University',term:'2026년 2학기',submitted_at:null,submitted_by:null},
+ s1_1:{decision_issue:[`A relevant policy authority [name the agency] must decide whether/how to adopt or revise ${g.iv} for ${g.population}.`,`The decision requires evidence about ${g.ov}, not assumptions about policy effectiveness.`,`This CAT will compare the best available studies and identify what remains uncertain before recommending action.`],application_context:[`Target setting: ${contextSpecific}; verify institutional eligibility rules, implementation capacity, and baseline outcomes.`,`Population of interest: ${g.population}; assess whether study populations match this definition.`,`Check differences in policy exposure, local resources, and historical period before applying international findings.`]},
+ s1_2:{question},
+ s1_3:{population:{main:g.population,supplementary:g.popTerms.filter(s=>s!==g.population).concat(['eligible population','target group'])},input:{main:g.iv,supplementary:g.synI.filter(x=>x!==g.iv)},context:{main:g.context,supplementary:g.context==='low-fertility settings'?['low fertility','below replacement fertility','subreplacement fertility']:['implementation setting','policy environment']},output:{main:g.ov,supplementary:g.synO.filter(x=>x!==g.ov)},outcome:{main:g.outcome,supplementary:g.isFertility?['total fertility rate','completed family size','birth timing']:['long-run outcomes','population-level consequences']}},
+ s2_1:{databases:[{db_id:'DB1',name:'ProQuest Central',peer_reviewed:true,language:'English (proposed)',year_range:'All years (proposed)',reason:'Multidisciplinary journal discovery; peer-reviewed limiter. Search has not yet been run.'},{db_id:'DB2',name:'Scopus',peer_reviewed:true,language:'English (proposed)',year_range:'All years (proposed)',reason:'Citation-indexed multidisciplinary research; record actual restrictions only after searching.'},{db_id:'DB3',name:'ScienceDirect',peer_reviewed:true,language:'English (proposed)',year_range:'All years (proposed)',reason:'Publisher platform for journal full text and related scholarship; not equivalent to Scopus.'}],notes:'All sources and filters are planning entries only.'},
+ s2_2:{steps:makeSearches(g).map((s,i)=>({no:i+1,code:s.code,hits:{},final_count:0,result_note:s.note,found_ev_ids:[]}))},
+ s2_3:{evidence:[],selection_note:['Proposed inclusion: original research or systematic reviews addressing the specified input and actual outcome.','Screen each publication against its own population, intervention, comparison or condition, measured output, and context.','Deduplicate by DOI/title; record reasons for exclusions and each study’s actual search step.','No studies have been selected or appraised yet.']},
+ s3:{assessment:[],table_note:'No study-level effects are entered until the source publication has been checked.'},
+ s4_1:{cat_question_restated:question,conclusion:['Evidence has not been appraised; no substantive effectiveness conclusion can be made yet.'],key_findings:['Pending: summarize verified effect estimates, null results, and design-specific limitations.'],boundary_conditions:[`Check applicability to ${g.population} in ${contextSpecific}.`],conflicting_findings:[],additional_considerations:['Separate associations, quasi-experimental estimates, and randomized evidence; do not treat them as equivalent.']},
+ s4_2:Object.fromEntries(BANDS.map(x=>[x,{supporting:{ev_ids:[],text:''},conflicting:{ev_ids:[],text:''}}])),
+ s4_3:{strengths:['Initial PICOC and search strategy drafted consistently from the question.'],weaknesses:['No actual database search counts or full-text appraisals have been supplied.','Context, eligibility, and effect sizes require source-level verification.'],credibility_level:'',credibility_reason:['Do not select a confidence level until the evidence has been screened and appraised.']},
+ s5_1:{nodes:round==='CAT2'?[]:[{node_id:'N1',label:cap(g.iv),note:'Policy input; proposed, not yet evaluated.'},{node_id:'N2',label:cap(g.ov),note:'Immediate or intermediate measured outcome to be specified.'},{node_id:'N3',label:cap(g.outcome),note:'Longer-term outcome; assumed until verified.'}]},
+ s5_2:{links:round==='CAT2'?[]:[{from:'N1',to:'N2',direction:'?',ev_ids:[],mechanism:'Hypothesized relationship; no supporting study selected yet.'},{from:'N2',to:'N3',direction:'?',ev_ids:[],mechanism:'Potential downstream effect; assumption pending evidence.'}]},
+ s6_1:{short_term:{time_frame:'0–6 months (proposed)',policy_goal:[`Specify baseline measures of ${g.ov} and eligibility.`],recommendations:[recommendation('Complete evidence-based policy appraisal',[`Verify actual eligibility and outcomes for ${g.population}.`]),recommendation('Design measurement and safeguards',[`Define indicators, subgroup reporting, and data-quality checks for ${g.ov}.`])],confidence:{level:'',reason:'Cannot rate confidence before appraisal.'},further_considerations:['Requires administrative feasibility and stakeholder consultation.']},mid_long_term:{time_frame:'6–24 months (proposed)',policy_goal:[`Monitor ${g.ov} and longer-term outcomes over a defensible follow-up period.`],recommendations:[recommendation('Pilot and evaluate only if evidence supports it',[`Define a credible comparison strategy and monitor ${g.ov} before scale-up.`])],confidence:{level:'',reason:'Cannot rate confidence before appraisal.'},further_considerations:['Policy options are provisional, not evidence-backed recommendations.']}},
+ references:[],collaboration:round==='CAT3'?null:{assignments:[],contributions:[]}
+ };
+ return model;
+}
+const titleFor=()=> S.model ? S.model.meta.topic : '';
+const roundName=r=>({CAT1:'CAT 1 · Walk',CAT2:'CAT 2 · Run',CAT3:'CAT 3 · Fly'})[r]||r;
+function evidenceCount(){return S.model?.s2_3.evidence.length||0;}
+function progress(){
+ const d=S.model;if(!d)return 0;
+ const checks=[!!d.s1_2.question,!!d.s1_3.input.main,d.s2_1.databases.every(x=>x.name),d.s2_2.steps.some(x=>Object.values(x.hits).some(v=>v!==null)),d.s2_3.evidence.length>0,d.s3.assessment.some(a=>a.key_findings),d.s4_3.credibility_level!==''&&d.s4_3.credibility_reason.length>0,d.references.length>0];
+ return Math.round(checks.filter(Boolean).length/checks.length*100);
+}
+function fillField(path,label,opts={}){
+ const val=get(S.model,path);const isArr=Array.isArray(val);const text=lines(val);const id='field-'+path.replace(/[^a-z0-9_-]/gi,'-');
+ return `<div class="field"><label class="label" for="${id}">${esc(label)}</label>${opts.hint?`<div class="field-hint" style="margin-bottom:7px">${esc(opts.hint)}</div>`:''}<textarea id="${id}" data-path="${esc(path)}" data-lines="${isArr?1:0}" rows="${opts.rows||4}" class="${opts.code?'code':opts.bullets?'bullets':''}" placeholder="${esc(opts.placeholder||'Enter content')}">${esc(text)}</textarea></div>`;
+}
+function inp(path,label,opts={}){const id='field-'+path.replace(/[^a-z0-9_-]/gi,'-');return `<div class="field"><label class="label" for="${id}">${esc(label)}</label><input id="${id}" class="input" data-path="${esc(path)}" value="${esc(get(S.model,path)||'')}" placeholder="${esc(opts.placeholder||'')}" /></div>`;}
+function setup(){ROOT.innerHTML=`<div class="cover-shell"><div class="setup"><div class="setup-aside"><div class="setup-mark"><span>CS</span> CAT Studio</div><h1>Your research.<br/>Structured<br/>with evidence.</h1><p>From one policy question to a rigorous CAT report. Draft responsibly, discover literature, appraise evidence, and export into the university's official 2026 form.</p><div class="setup-steps"><span><b>1</b> Enter topic and CAT question</span><span><b>2</b> Review the auto-generated research plan</span><span><b>3</b> Verify evidence and complete your CAT</span></div></div><div class="setup-form"><div class="kicker">Welcome to CAT Studio</div><h2>Start your new CAT</h2><p class="form-sub">Only two text inputs are needed to create your first draft.</p><label class="label">Select CAT round</label><div class="rounds">${['CAT1','CAT2','CAT3'].map(r=>`<button class="round-opt" aria-pressed="${S.round===r}" data-action="round" data-round="${r}">${esc(roundName(r))}</button>`).join('')}</div><div class="field"><label class="label" for="topic">Research topic</label><input id="topic" class="input" placeholder="e.g. Paid maternity leave and low fertility" maxlength="240" /></div><div class="field"><label class="label" for="question">CAT research question</label><textarea id="question" rows="5" placeholder="e.g. Does access to paid maternity leave increase the likelihood of having a child among employed women of reproductive age?"></textarea><div class="field-hint">The system proposes PICOC terms; you can edit them before researching.</div></div><button class="btn primary setup-btn" data-action="generate">Generate my CAT workspace →</button><div class="setup-foot">Automatic drafting does not invent articles, effects, or search counts.</div>${S.model?`<div style="margin-top:20px;text-align:center"><button class="btn" data-action="resume">Resume saved workspace</button></div>`:''}</div></div></div>`;}
+function stageNavigation(){
+ const steps=SECTIONS.filter(x=>!(x[0]==='logic'&&S.model.meta.round==='CAT2'));
+ const at=steps.findIndex(x=>x[0]===S.active);
+ const prev=at>0?steps[at-1]:null,next=at<steps.length-1?steps[at+1]:null;
+ return `<nav class="stage-nav" aria-label="Continue through CAT sections"><div><span class="stage-label">GUIDED WORKFLOW</span><div class="stage-title">${next?`Next: ${esc(next[1])}`:'You have reached the export step'}</div><div class="mini">Everything remains editable. Save a JSON backup before submitting.</div></div><div class="inline">${prev?`<button class="btn" data-action="nav" data-section="${prev[0]}">← Previous</button>`:''}${next?`<button class="btn primary" data-action="nav" data-section="${next[0]}">Continue →</button>`:`<button class="btn primary" data-action="backup">Save my work ↓</button>`}</div></nav>`;
+}
+function layout(){
+ const current=SECTIONS.find(x=>x[0]===S.active)||SECTIONS[0], d=S.model;
+ ROOT.innerHTML=`<div class="shell"><aside class="sidebar"><div class="brand"><span class="brand-logo">CS</span><div><div class="brand-main">CAT Studio</div><div class="brand-sub">Evidence-based policy</div></div></div><div class="nav-label">Research workspace</div><div class="nav-menu" aria-label="Research sections">${SECTIONS.filter(x=>!(x[0]==='logic'&&d.meta.round==='CAT2')).map(([id,label,icon])=>`<button class="nav-item ${S.active===id?'active':''}" data-action="nav" data-section="${id}" ${S.active===id?'aria-current="page"':''}><span class="nav-icon">${icon}</span>${esc(label)}</button>`).join('')}</div><div class="sidebar-bottom"><strong>${esc(roundName(d.meta.round))}</strong><div>Working draft · Fall 2026</div><div class="small-progress" role="progressbar" aria-label="Basic workflow readiness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><div style="margin-top:6px">${progress()}% basic readiness</div></div></aside><main class="main"><div class="topbar"><div><div class="crumb">CAT Studio / ${esc(current[1])}</div><div class="topbar-title">${esc(d.meta.topic)}</div></div><div class="top-actions"><span class="round-pill">${esc(roundName(d.meta.round))}</span><button class="btn auto-top-button" data-action="auto-start">◈ Auto-Research</button><button class="btn ai-top-button" data-action="ai-open">✦ Ask CAT Copilot</button><button class="btn" data-action="backup">↓ Save JSON</button><button class="btn primary" data-action="nav" data-section="export">Review & export →</button></div></div><div class="content" id="main-content">${renderSection(S.active)}${stageNavigation()}<footer>CAT Studio · Offline-first drafting assistant · Updated to the Fall 2026 CAT schema 1.2</footer></div></main></div>`;
+}
+function head(kicker,title,desc){return `<div class="page-head"><div><span class="kicker">${esc(kicker)}</span><h1>${esc(title)}</h1><p class="lead">${esc(desc)}</p></div></div>`;}
+function notice(label='Important'){return `<div class="banner"><div style="font-size:18px">⚠</div><div><strong>${label}</strong><br/>This is an automatically generated <b>research plan</b>, not a completed evidence review. Published findings, database hit counts, and effect sizes must come from verified sources.</div></div>`;}
+function renderSection(k){switch(k){case 'auto':return autoRender();case 'question':return renderQuestion();case 'search':return renderSearch();case 'appraisal':return renderAppraisal();case 'synthesis':return renderSynthesis();case 'logic':return renderLogic();case 'decisions':return renderDecisions();case 'export':return renderExport();default:return renderOverview();}}
+function renderOverview(){const d=S.model;const g=infer(d.meta.topic,d.s1_2.question);let done=d.s2_2.steps.filter(s=>Object.values(s.hits||{}).some(x=>typeof x==='number')).length;
+ return `${head('Research dashboard','A clear path to your CAT','Your initial draft is ready. The next step is collecting and validating evidence—not inventing an answer.')}${notice('Evidence-first drafting')}
+ <div class="grid g4" style="margin-bottom:20px"><div class="stat"><div class="lbl">CAT round</div><div class="num">${esc(d.meta.round.replace('CAT',''))}</div><div class="detail">${esc(roundName(d.meta.round))}</div></div><div class="stat"><div class="lbl">Planned search steps</div><div class="num">${d.s2_2.steps.length}</div><div class="detail">${done} with entered hit counts</div></div><div class="stat"><div class="lbl">Evidence studies</div><div class="num">${evidenceCount()}</div><div class="detail">Requires source validation</div></div><div class="stat"><div class="lbl">Workflow readiness</div><div class="num">${progress()}%</div><div class="detail">Basic fields only</div></div></div>
+ <div class="hero"><div><span class="kicker">Your CAT question</span><h2 style="margin-top:8px;font-size:20px">${esc(d.s1_2.question)}</h2><p>Population: ${esc(g.population)} · Input: ${esc(g.iv)} · Output: ${esc(g.ov)} · Context: ${esc(g.context)}</p></div><div class="icon-round">↗</div></div>
+ <div class="auto-home-cta"><div><span class="kicker">NEW · AI AUTO-RESEARCH</span><h2>Discover academic sources from your question.</h2><p>Find source records, screen abstracts with AI, and create an editable CAT draft with traceable citations.</p></div><button class="btn primary" data-action="auto-start">Start Auto-Research →</button></div><div class="grid g2"><div class="card"><div class="card-head"><div><h2>Start with PICOC</h2><p class="card-sub">Edit the inferred concepts to match your intended policy decision.</p></div><span class="tag ok">Drafted</span></div><p class="muted">The current 2026 model uses <b>Population · Input · Context (Condition) · Output · outCome</b>, not the old Comparison field.</p><button class="btn primary" data-action="nav" data-section="question">Review question and PICOC →</button></div><div class="card"><div class="card-head"><div><h2>Continue with evidence</h2><p class="card-sub">Run recorded searches and import legitimate articles.</p></div><span class="tag pending">Needs verification</span></div><p class="muted">You can search OpenAlex for candidate publications or import RIS files. Neither action assigns grades or invents effect estimates.</p><button class="btn" data-action="nav" data-section="search">Open search workspace →</button></div></div>
+ <div class="card"><h2>How the three CAT rounds work</h2><div class="grid g3" style="margin-top:16px"><div><span class="tag info">CAT 1 · Walk</span><p class="mini">Group-based deliberate analysis, including a logic model.</p></div><div><span class="tag info">CAT 2 · Run</span><p class="mini">Group-based rapid analysis; the official form omits the logic model.</p></div><div><span class="tag info">CAT 3 · Fly</span><p class="mini">Individual final CAT with evidence-linked logic model and policy actions.</p></div></div></div>`;}
+function renderQuestion(){const d=S.model;return `${head('Section I','Policy question & PICOC','The first draft is generated from your two inputs. Verify the scope and revise the terms before searching.')}${notice('Review these interpretations')}
+ <div class="card"><div class="card-head"><div><h2>1.1 Policy decision issue</h2><p class="card-sub">Who decides, why now, and where the evidence will apply.</p></div><span class="tag info">Editable</span></div><div class="grid g2">${fillField('s1_1.decision_issue','Decision issue · one bullet per line',{rows:6})}${fillField('s1_1.application_context','Context for applying the evidence',{rows:6})}</div></div>
+ <div class="card"><h2>1.2 CAT question</h2><p class="card-sub" style="margin-bottom:13px">Answerable research questions identify a population, input, measurable output, and setting.</p>${fillField('s1_2.question','Full CAT question',{rows:3})}<button class="btn pale" data-action="reinfer">↻ Recalculate PICOC from question</button><div class="mini" style="margin-top:8px">Recalculation regenerates the initial plan and clears subsequent edits; export a backup first.</div></div>
+ <div class="card"><div class="card-head"><div><h2>1.3 PICOC structure</h2><p class="card-sub">Updated 2026 terminology: Comparison is not a mandatory PICOC field; outCome is separate from Output.</p></div></div><div class="table-wrap"><table><thead><tr><th style="width:24%">Element</th><th style="width:33%">Main keyword</th><th>Supplementary keywords · one per line</th></tr></thead><tbody>${[['population','Population'],['input','Input'],['context','Context (Condition)'],['output','Output'],['outcome','outCome']].map(([x,n])=>`<tr><td><strong>${n}</strong></td><td><input class="input" data-path="s1_3.${x}.main" value="${esc(d.s1_3[x].main)}"></td><td><textarea rows="3" data-path="s1_3.${x}.supplementary" data-lines="1">${esc(lines(d.s1_3[x].supplementary))}</textarea></td></tr>`).join('')}</tbody></table></div></div>`;}
+function renderSearch(){const d=S.model;const g=infer(d.meta.topic,d.s1_2.question);return `${head('Section II','Evidence search & source library','Your search syntax is proposed automatically. Enter actual database counts only after you have conducted each search.')}${notice('Search counts are not auto-filled')}
+ <div class="card"><div class="card-head"><div><h2>2.1 Database strategy</h2><p class="card-sub">Three starting sources suggested; change them to match your actual methods.</p></div><button class="btn sm" data-action="add-db">+ Database</button></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Database</th><th>Language</th><th>Year range</th><th>Reason</th></tr></thead><tbody>${d.s2_1.databases.map((r,i)=>`<tr><td>${esc(r.db_id)}</td><td><input class="input" data-path="s2_1.databases.${i}.name" value="${esc(r.name)}"></td><td><input class="input" data-path="s2_1.databases.${i}.language" value="${esc(r.language)}"></td><td><input class="input" data-path="s2_1.databases.${i}.year_range" value="${esc(r.year_range)}"></td><td><textarea rows="3" data-path="s2_1.databases.${i}.reason">${esc(r.reason)}</textarea></td></tr>`).join('')}</tbody></table></div><div class="section-note">The official template wants a database choice, filter and scope justification. Do not leave “proposed” if you later claim that search was executed.</div></div>
+ <div class="card"><div class="card-head"><div><h2>2.2 Search process</h2><p class="card-sub">Search codes below are written for ProQuest's abstract field. Translate to the appropriate syntax in other databases.</p></div><button class="btn sm" data-action="add-step">+ Search step</button></div>${d.s2_2.steps.map((s,i)=>`<div class="step"><div class="step-num">${i+1}</div><div><div class="row-between"><b style="color:#244358;font-size:12px">Search step ${i+1}</b><button class="btn sm" data-action="copy-query" data-index="${i}">Copy query</button></div><textarea class="code" data-path="s2_2.steps.${i}.code">${esc(s.code)}</textarea><div class="grid g3" style="margin-top:10px">${d.s2_1.databases.map(db=>`<div class="field"><label class="label">${esc(db.name||db.db_id)} hits</label><input type="number" min="0" class="input" placeholder="Not run" data-path="s2_2.steps.${i}.hits.${db.db_id}" value="${esc(s.hits[db.db_id]??'')}"></div>`).join('')}</div><div class="field"><label class="label">Results and reason for next step</label><textarea rows="2" data-path="s2_2.steps.${i}.result_note">${esc(s.result_note)}</textarea></div></div></div>`).join('')}</div>
+ <div class="grid g2"><div class="card"><div class="card-head"><div><h2>Discover candidate journals</h2><p class="card-sub">Live OpenAlex metadata search. It is not a ProQuest/Scopus search and does not count as one.</p></div></div><button class="btn primary" data-action="openalex" ${S.searchLoading?'disabled':''}>${S.searchLoading?'Searching…':'⌕ Search OpenAlex'}</button><p class="mini" style="margin-top:10px">Optional internet connection required. Add only potentially relevant records; verify each paper before grading.</p></div><div class="card"><h2>Import bibliography</h2><p class="card-sub">Upload RIS references exported from ProQuest, Scopus, Zotero, or another source.</p><button class="btn" data-action="import-ris">↑ Import .RIS / .TXT</button><p class="mini" style="margin-top:10px">Duplicates are checked by DOI/title where possible; the application never fabricates methods or effect sizes.</p></div></div>
+ <div class="card"><div class="card-head"><div><h2>Research library</h2><p class="card-sub">${S.library.length} candidate records. These are not automatically in your final evidence list.</p></div></div>${S.library.length?S.library.map((p,i)=>`<div class="paper"><div class="row-between"><div class="paper-title">${esc(p.title||'Untitled publication')}</div><button class="btn sm" data-action="add-evidence" data-index="${i}">+ Add to evidence</button></div><div class="paper-brief">${esc((p.authors||[]).join(', '))} · ${esc(p.year||'n.d.')} · ${esc(p.journal||'Journal unknown')}</div>${p.doi?`<div class="mini">DOI: ${esc(p.doi)}</div>`:''}${p.abstract?`<p>${esc(p.abstract.slice(0,450))}${p.abstract.length>450?'…':''}</p>`:''}${p.url?`<a target="_blank" rel="noreferrer" style="font-size:11px" href="${esc(p.url)}">Source details ↗</a>`:''}</div>`).join(''):`<div class="empty"><span class="big">⌕</span>No papers in your library yet.<br/>Use live discovery or import RIS citation records.</div>`}</div>`;}
+function renderAppraisal(){const d=S.model;const es=d.s2_3.evidence;return `${head('Sections II.3 + III','Evidence list & critical appraisal','Each final study is entered once, then its design, level, actual study PICOC, and effects are appraised separately.')}${notice('Study-level verification required')}
+ <div class="card"><div class="card-head"><div><h2>2.3 Final evidence list</h2><p class="card-sub">Recommended 5–10 studies; the 2026 template's mechanical check accepts 5–12.</p></div><button class="btn" data-action="blank-evidence">+ Add blank study</button></div>${!es.length?`<div class="empty"><span class="big">▤</span>No studies have been finalized.<br/>Go to the Search tab to add candidate references or create a blank evidence record.</div>`:es.map((e,i)=>`<div class="paper ${S.selected===i?'selected':''}"><div class="row-between"><div><div class="paper-title">Evidence #${e.ev_id}: ${esc(e.citation||'[Citation not yet entered]')}</div><div class="paper-brief">${esc(e.lv||'Ungraded')} · ${esc(e.doi||'DOI not entered')}</div></div><div class="inline"><button class="btn sm" data-action="edit-evidence" data-index="${i}">Appraise →</button><button class="btn sm danger" data-action="remove-evidence" data-index="${i}">Remove</button></div></div></div>`).join('')}</div>${es.length&&S.selected!==undefined&&es[S.selected]?renderEvidenceDetail(S.selected):''}`;}
+function renderEvidenceDetail(i){const d=S.model,e=d.s2_3.evidence[i],a=d.s3.assessment[i];if(!e||!a)return'';
+ return `<div class="card" id="evidence-detail"><div class="card-head"><div><h2>Evidence #${e.ev_id} · Study appraisal</h2><p class="card-sub">Current 2026 form uses P, I, (C), (Th), O, (C). The study’s own components—not your CAT’s PICOC.</p></div><span class="tag ${e.band?'ok':'pending'}">${esc(e.lv||'Unrated')}</span></div>${inp(`s2_3.evidence.${i}.citation`,'APA reference')}${inp(`s2_3.evidence.${i}.doi`,'DOI')}${fillField(`s2_3.evidence.${i}.comment`,'Reason for the evidence level (+/−) and caveats',{rows:3})}
+ <div class="grid g2"><div class="field"><label class="label">Evidence level determination (based on study design)</label><select data-path="s2_3.evidence.${i}.band" data-grade="${i}"><option value="">Select based on evidence</option>${BANDS.map(b=>`<option ${e.band===b?'selected':''} value="${b}">${b} · ${({A:'Systematic synthesis of multiple studies',B:'Estimated effect with a comparison group',C:'Association without causal comparison',D:'Systematically collected descriptive data',F:'No systematically collected data'})[b]}</option>`).join('')}</select></div><div class="field"><label class="label">Quality within band</label><select data-path="s2_3.evidence.${i}.pm" data-grade="${i}">${(QUALITY[e.band]||['+','','-']).map(x=>`<option ${e.pm===x?'selected':''} value="${x}">${x||'Standard'} ${x==='+'?'· stronger execution':x==='-'?'· meaningful limitations':''}</option>`).join('')}</select></div></div><div class="grid g2"><div class="field"><label class="label">Research design</label><select data-path="s3.assessment.${i}.rd"><option value=""></option>${RDS.map(x=>`<option value="${x}" ${a.rd===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label class="label">Effect magnitude</label><select data-path="s3.assessment.${i}.effect_size.magnitude">${['','very Large','Large','Moderate','Small','very Small','N/A'].map(x=>`<option value="${x}" ${a.effect_size.magnitude===x?'selected':''}>${x||'Select after checking reported results'}</option>`).join('')}</select></div></div><div class="hline"></div><h3>Study-level PICOC and Thruput</h3><div class="grid g3">${[['p','P · Population'],['i','I · Input'],['c','(C) · Context/condition'],['th','(Th) · Thruput'],['o','O · Output'],['oc','(C) · outCome']].map(([x,n])=>`<div class="field"><label class="label">${n}</label><textarea rows="2" data-path="s3.assessment.${i}.picoc_map.${x}">${esc(a.picoc_map[x]||'')}</textarea></div>`).join('')}</div>
+ <div class="hline"></div><div class="grid g2">${fillField(`s3.assessment.${i}.effect_size.details`,'Effect size: exact reported estimate, scale and uncertainty',{rows:5,placeholder:'e.g. odds ratio, 95% CI, sample; never invent a number'})}${fillField(`s3.assessment.${i}.key_findings`,'Key findings · actual source-reported results',{rows:5})}</div>${fillField(`s3.assessment.${i}.policy_implications`,'Policy implications · proportional to findings',{rows:4})}<div class="section-note">A/B/C levels are based on design and controls, not positive or negative results. The +/- modifier describes quality within the level. Keep all extracted numbers linked to the original article.</div></div>`;
+}
+function renderSynthesis(){const d=S.model;return `${head('Section IV','Evidence synthesis','Explain how the individual studies collectively answer the CAT question. The findings below are incomplete until the evidence is appraised.')}${notice('No evidence-backed conclusion yet')}
+ <div class="card"><h2>4.1 Conclusion & key findings</h2><div class="section-note">CAT question: ${esc(d.s1_2.question)}</div>${fillField('s4_1.conclusion','CAT conclusion · bullets',{rows:3})}${fillField('s4_1.key_findings','Key findings · bullets',{rows:4})}<div class="grid g2">${fillField('s4_1.boundary_conditions','Boundary conditions, if any',{rows:4})}${fillField('s4_1.conflicting_findings','Conflicting evidence, if any',{rows:4})}</div>${fillField('s4_1.additional_considerations','Additional considerations',{rows:3})}</div>
+ <div class="card"><h2>4.2 Evidence by level</h2><p class="card-sub">List actual evidence IDs, not invented support or opposition.</p><div class="table-wrap"><table><thead><tr><th>Level</th><th>Supporting IDs + interpretation</th><th>Conflicting IDs + interpretation</th></tr></thead><tbody>${BANDS.map(b=>`<tr><td><strong>${b}</strong></td><td>${smallSynthesisField(`s4_2.${b}.supporting`)}</td><td>${smallSynthesisField(`s4_2.${b}.conflicting`)}</td></tr>`).join('')}</tbody></table></div></div>
+ <div class="card"><h2>4.3 Credibility audit</h2><div class="grid g2">${fillField('s4_3.strengths','Strengths of the CAT process',{rows:4})}${fillField('s4_3.weaknesses','Weaknesses of the CAT process',{rows:4})}</div><div class="grid g2"><div class="field"><label class="label">Credibility of the conclusion</label><select data-path="s4_3.credibility_level">${['','Very high','High','Moderate','Low','Very low'].map(x=>`<option ${d.s4_3.credibility_level===x?'selected':''} value="${x}">${x||'Not rated'}</option>`).join('')}</select></div>${fillField('s4_3.credibility_reason','Why that confidence rating?',{rows:4})}</div></div>`;}
+function smallSynthesisField(path){const r=get(S.model,path);return `<input class="input" data-ids-path="${path}.ev_ids" value="${esc((r.ev_ids||[]).join(', '))}" placeholder="IDs: 1, 3" style="margin-bottom:6px"><textarea rows="3" data-path="${path}.text" placeholder="Explain what the studies support">${esc(r.text||'')}</textarea>`;}
+function renderLogic(){const d=S.model;if(d.meta.round==='CAT2')return `${head('CAT 2','Logic model omitted','The official 2026 CAT2 form does not require Section V logic model.')}`;
+ const nodes=d.s5_1.nodes,links=d.s5_2.links;
+ return `${head('Section V','Evidence-linked logic model','A relationship without a verified evidence ID is an assumption, not an established causal mechanism.')}${notice('Initial pathways are assumptions')}
+ <div class="card"><div class="card-head"><div><h2>5.1 Logic-model nodes</h2><p class="card-sub">Distinguish policy input, measured output, and longer-term outCome.</p></div><button class="btn sm" data-action="add-node">+ Node</button></div><div class="table-wrap"><table><thead><tr><th>Node</th><th>Label</th><th>Description</th></tr></thead><tbody>${nodes.map((n,i)=>`<tr><td>${esc(n.node_id)}</td><td><input class="input" data-path="s5_1.nodes.${i}.label" value="${esc(n.label)}"></td><td><textarea rows="2" data-path="s5_1.nodes.${i}.note">${esc(n.note)}</textarea></td></tr>`).join('')}</tbody></table></div></div>
+ <div class="card"><div class="card-head"><div><h2>5.2 Mechanisms & evidence</h2><p class="card-sub">Evidence IDs link each path to an appraised paper; unlinked paths remain explicitly hypothetical.</p></div><button class="btn sm" data-action="add-link">+ Path</button></div>${links.map((k,i)=>`<div class="step"><div class="step-num">${i+1}</div><div><div class="grid g3"><div class="field"><label class="label">From</label><select data-path="s5_2.links.${i}.from">${nodes.map(n=>`<option ${k.from===n.node_id?'selected':''} value="${esc(n.node_id)}">${esc(n.label)}</option>`).join('')}</select></div><div class="field"><label class="label">To</label><select data-path="s5_2.links.${i}.to">${nodes.map(n=>`<option ${k.to===n.node_id?'selected':''} value="${esc(n.node_id)}">${esc(n.label)}</option>`).join('')}</select></div><div class="field"><label class="label">Direction</label><select data-path="s5_2.links.${i}.direction">${['?','+','-'].map(x=>`<option ${k.direction===x?'selected':''} value="${x}">${x==='?'?'Undetermined':x}</option>`).join('')}</select></div></div><div class="grid g2"><div class="field"><label class="label">Verified evidence IDs (comma-separated)</label><input class="input" data-ids-path="s5_2.links.${i}.ev_ids" value="${esc(k.ev_ids.join(', '))}" placeholder="None = assumption"></div><div class="field"><label class="label">Mechanism / justification</label><textarea rows="2" data-path="s5_2.links.${i}.mechanism">${esc(k.mechanism)}</textarea></div></div></div></div>`).join('')}</div>
+ <div class="card"><h2>5.3 Diagram preview</h2><div class="flow">${nodes.map((n,i)=>`${i?'<span class="flow-arrow">→</span>':''}<div class="flow-node">${esc(n.label)}<div class="mini">${i>0?links[i-1]?.ev_ids?.length?'Evidence-linked':'Assumption':'Starting input'}</div></div>`).join('')}</div><p class="mini">This is a draft sequence. Review the direction and support for every path before submission.</p></div>`;}
+function actionColumn(key){const c=get(S.model,`s6_1.${key}`);return `<div class="card"><h2>${key==='short_term'?'Short term':'Mid- and long-term'}</h2>${inp(`s6_1.${key}.time_frame`,'Time frame')}${S.model.meta.round!=='CAT2'?fillField(`s6_1.${key}.policy_goal`,'Policy goals and KPIs · one per line',{rows:3}):''}${c.recommendations.map((r,i)=>`<div class="search-card"><div class="field"><label class="label">Recommendation ${i+1}</label><input class="input" data-path="s6_1.${key}.recommendations.${i}.headline" value="${esc(r.headline)}"></div><div class="field"><label class="label">Supporting evidence IDs</label><input class="input" data-ids-path="s6_1.${key}.recommendations.${i}.ev_ids" value="${esc(r.ev_ids.join(', '))}" placeholder="None yet"></div>${r.actions.map((a,j)=>`<div class="field"><label class="label">Action ${j+1}</label><textarea data-path="s6_1.${key}.recommendations.${i}.actions.${j}.text" rows="2">${esc(a.text)}</textarea></div>`).join('')}</div>`).join('')}<div class="field"><label class="label">Confidence level</label><select data-path="s6_1.${key}.confidence.level">${['','High','Moderate','Low'].map(x=>`<option ${c.confidence.level===x?'selected':''} value="${x}">${x||'Not rated'}</option>`).join('')}</select></div>${fillField(`s6_1.${key}.confidence.reason`,'Why this confidence? (do not overclaim)',{rows:2})}${fillField(`s6_1.${key}.further_considerations`,'Further considerations',{rows:3})}</div>`;}
+function renderDecisions(){return `${head('Section VI','Policy recommendations & action plan','Use verified evidence to justify actions. Starting entries are methodological proposals, not findings about the policy’s effectiveness.')}${notice('Recommendations require evidence links')}<div class="grid g2">${actionColumn('short_term')}${actionColumn('mid_long_term')}</div><div class="section-note">Keep 3–5 recommendations total, with evidence IDs, time frames, responsible actors, measurable KPIs, and bounded confidence.</div>`;}
+function renderExport(){const d=S.model, issues=validate(), refs=d.references, n=issues.length;
+ return `${head('Final stage','References, checks & export','Download a schema-1.2 working file that the uploaded official 2026 CAT form can open and submit.')}
+ <div class="grid g3" style="margin-bottom:17px"><div class="stat"><div class="lbl">Formal self-check issues</div><div class="num">${n}</div><div class="detail">Advisory; cannot replace academic review</div></div><div class="stat"><div class="lbl">Evidence entries</div><div class="num">${evidenceCount()}</div><div class="detail">Reference count: ${refs.length}</div></div><div class="stat"><div class="lbl">Compatible schema</div><div class="num">1.2</div><div class="detail">Fall 2026 CAT template</div></div></div>
+ <div class="card"><h2>Validation checklist</h2><p class="card-sub">Passing these mechanical checks does not establish scientific accuracy.</p>${issues.length?`<div style="margin-top:13px">${issues.map(s=>`<div style="border-bottom:1px solid #edf0f3;padding:9px 0"><span style="color:#9b6c1f;font-weight:800">!</span> ${esc(s)}</div>`).join('')}</div>`:`<div class="success-circle" style="margin-top:14px">All basic format checks passed. Continue verifying the scientific content and each source.</div>`}</div>
+ <div class="card"><div class="card-head"><div><h2>References · APA</h2><p class="card-sub">One source per line. Evidence references can be pulled into this field.</p></div><button class="btn sm" data-action="pull-refs">↻ Pull from evidence</button></div>${fillField('references','Reference list',{rows:9})}</div>
+ <div class="card"><div class="card-head"><div><h2>Official CAT submission workflow</h2><p class="card-sub">This app exports a working JSON, not a fake completed submission.</p></div><div class="grid g2"><div class="search-card"><span class="tag ok">Step 1</span><h3 style="margin-top:10px">Download working data</h3><p class="mini">Includes all current section content in the official schema, with blank/unverified studies left blank.</p><button class="btn primary" data-action="backup">↓ Download CAT working JSON</button></div><div class="search-card"><span class="tag info">Step 2</span><h3 style="margin-top:10px">Open the official form</h3><p class="mini">In Chrome, select your CAT round and use “Open working file” to load the JSON. Then review and build its HTML submission.</p><a class="btn dark" target="_blank" rel="noopener" href="Official_CAT_2026.html">↗ Open official CAT 2026 form</a></div></div><div class="banner" style="margin-top:13px;margin-bottom:0"><div>⚠</div><div>For your class, submit the <b>HTML produced by the official form</b>, not this site's preview, JSON, or a PDF. The official form includes its required structured grading data.</div></div></div>
+ <div class="card"><h2>Project controls</h2><div class="inline"><button class="btn" data-action="import-work">↑ Import a saved working JSON</button><button class="btn" data-action="restart">+ Start another CAT</button></div></div>`;}
+function validate(){const d=S.model,issues=[];if(!d)return[];
+ if(!d.meta.members.some(m=>m.name))issues.push('Add your name (and group number for CAT 1 or CAT 2) in the official form.');
+ if(d.s2_1.databases.filter(x=>x.name).length<3)issues.push('At least three databases should be documented.');
+ if(d.s2_2.steps.filter(x=>x.code).length<5)issues.push('Document at least five search steps.');
+ const codes=d.s2_2.steps.map(s=>s.code).join(' ').toLowerCase();if(!codes.includes('meta-analysis')||!codes.includes('systematic review'))issues.push('Search expressions should cover systematic reviews and meta-analyses.');
+ if(!d.s2_2.steps.some(s=>Object.values(s.hits||{}).some(x=>typeof x==='number')))issues.push('No actual database hit counts recorded. Run and document the searches.');
+ if(d.s2_3.evidence.length<5||d.s2_3.evidence.length>12)issues.push('The official form expects approximately 5–10, accepting 5–12 evidence items.');
+ d.s2_3.evidence.forEach(e=>{if(!e.band)issues.push(`Evidence #${e.ev_id} has no research-design band.`);if(!e.citation)issues.push(`Evidence #${e.ev_id} has no citation.`);});
+ d.s3.assessment.forEach(a=>{if(!a.rd)issues.push(`Evidence #${a.ev_id} has no research-design code.`);if(!a.key_findings)issues.push(`Evidence #${a.ev_id} has no verified findings.`);});
+ if(!d.s4_3.credibility_level)issues.push('Credibility assessment remains unrated.');
+ const recs=[...d.s6_1.short_term.recommendations,...d.s6_1.mid_long_term.recommendations].filter(x=>x.headline);
+ if(recs.length<3||recs.length>5)issues.push('Provide 3–5 action recommendations total.');
+ recs.forEach((r,i)=>{if(!r.ev_ids.length&&!r.actions.some(a=>a.ev_ids.length))issues.push(`Recommendation ${i+1} is not linked to an evidence ID.`);});
+ if(d.meta.round!=='CAT2'&&d.s5_2.links.every(x=>!x.ev_ids.length))issues.push('All logic-model paths are assumptions, with no evidence-backed path.');
+ if(d.references.length<d.s2_3.evidence.length)issues.push('Reference list is shorter than evidence list.');
+ return issues;
+}
+function render(){if(!S.model)setup();else layout();renderChat();}
+function download(name,content,type='application/json'){const blob=new Blob([content],{type});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1200);}
+function exportJSON(){const data=structuredClone(S.model);data.s4_1.cat_question_restated=data.s1_2.question;data.s3.assessment.forEach((a,i)=>a.lv=data.s2_3.evidence[i]?.lv||'');download(`${data.meta.round}_2026F_${slug(data.meta.topic)}_working.json`,JSON.stringify(data,null,2));showToast('Working JSON downloaded. Import it in the official CAT form.');}
+function ensureAssessment(){const d=S.model;d.s3.assessment=d.s2_3.evidence.map(e=>d.s3.assessment.find(x=>x.ev_id===e.ev_id)||({ev_id:e.ev_id,rd:'',lv:e.lv,picoc_map:{p:'',i:'',c:'',th:'',o:'',oc:''},effect_size:{magnitude:'',details:''},key_findings:'',policy_implications:''}));}
+function relevel(i){const e=S.model.s2_3.evidence[i];if(!e)return;e.lv=e.band==='F'?'F':e.band+(e.pm||'');S.model.s3.assessment[i].lv=e.lv;}
+function addEvidence(p){const d=S.model;const doi=p?.doi||'';if(doi && d.s2_3.evidence.some(e=>e.doi===doi)){showToast('This DOI is already on the evidence list.');return;}
+ const id=d.s2_3.evidence.reduce((m,e)=>Math.max(m,e.ev_id),0)+1;
+ const cite=p?`${(p.authors||[]).join(', ')||'Author not verified'} (${p.year||'n.d.'}). ${p.title||'Untitled'}. ${p.journal||'Journal not verified'}. ${p.doi? 'https://doi.org/'+p.doi:''}`:'';
+ d.s2_3.evidence.push({ev_id:id,band:'',pm:'',lv:'',citation:cite,doi,comment:'Candidate only. Verify full text, study design, comparison structure and effect estimates before assigning a grade.'});
+ ensureAssessment();S.selected=d.s2_3.evidence.length-1;S.active='appraisal';persist();render();showToast('Candidate added. Study is ungraded until you verify the source.');}
+function normalizeDoi(d){return String(d||'').trim().replace(/^https?:\/\/(?:dx\.)?doi\.org\//i,'').toLowerCase();}
+function addLibrary(list){const seen=new Set(S.library.map(p=>normalizeDoi(p.doi)||String(p.title||'').toLowerCase()));let added=0;
+ for(const p of list){const key=normalizeDoi(p.doi)||String(p.title||'').toLowerCase();if(!key||seen.has(key))continue;seen.add(key);S.library.push(p);added++;}
+ persist();render();showToast(`${added} new candidate record(s) added. No evidence grades assigned.`);}
+function parseRIS(text){const items=[];let p=null;for(const line of text.split(/\r?\n/)){
+ const m=line.match(/^([A-Z0-9]{2})\s*-\s*(.+)$/);if(!m)continue;const [_,tag,value]=m;
+ if(tag==='TY'){p={title:'',authors:[],year:'',journal:'',doi:'',abstract:'',url:''};continue;}if(!p)continue;
+ if(tag==='ER'){if(p.title)items.push(p);p=null;continue;}
+ if(tag==='TI'||tag==='T1')p.title=value;else if(tag==='AU'||tag==='A1')p.authors.push(value);else if(tag==='PY'||tag==='Y1')p.year=(value.match(/\d{4}/)||[])[0]||'';else if(['JO','JF','T2'].includes(tag))p.journal=value;else if(tag==='DO')p.doi=normalizeDoi(value);else if(tag==='AB')p.abstract=value;else if(tag==='UR')p.url=value;
+ }if(p?.title)items.push(p);return items;}
+function invertedAbstract(index){if(!index)return'';const slots=[];for(const [w,idxs] of Object.entries(index))for(const i of idxs)slots[i]=w;return slots.join(' ');}
+async function runOpenAlex(){const q=infer(S.model.meta.topic,S.model.s1_2.question);S.searchLoading=true;render();try{
+ const query=[q.synI[0],q.synO[0]].join(' ');const url='https://api.openalex.org/works?search='+encodeURIComponent(query)+'&per-page=12&filter=type:article';
+ const response=await fetch(url,{headers:{Accept:'application/json'}});if(!response.ok)throw new Error(`HTTP ${response.status}`);
+ const j=await response.json();const list=(j.results||[]).map(w=>({title:w.display_name,authors:(w.authorships||[]).slice(0,9).map(a=>a.author?.display_name).filter(Boolean),year:String(w.publication_year||''),journal:w.primary_location?.source?.display_name||'',doi:normalizeDoi(w.doi),abstract:invertedAbstract(w.abstract_inverted_index),url:w.primary_location?.landing_page_url||w.doi||w.id}));
+ S.searchLoading=false;addLibrary(list);
+ }catch(e){S.searchLoading=false;render();showToast('OpenAlex lookup was unavailable. You can import a RIS file instead. '+e.message);}}
+function validIds(s){const live=new Set(S.model.s2_3.evidence.map(e=>e.ev_id));return String(s||'').split(/[ ,;]+/).map(x=>Number(x)).filter(x=>Number.isInteger(x)&&live.has(x));}
+function removeEvidence(i){const d=S.model;if(!confirm('Remove this evidence record? You can restore it from a backup.'))return;const old=d.s2_3.evidence[i]?.ev_id;d.s2_3.evidence.splice(i,1);d.s3.assessment=d.s3.assessment.filter(a=>a.ev_id!==old);d.s2_2.steps.forEach(s=>s.found_ev_ids=s.found_ev_ids.filter(x=>x!==old));BANDS.forEach(b=>['supporting','conflicting'].forEach(k=>{d.s4_2[b][k].ev_ids=d.s4_2[b][k].ev_ids.filter(x=>x!==old);}));d.s5_2.links.forEach(l=>l.ev_ids=l.ev_ids.filter(x=>x!==old));S.selected=undefined;persist();render();}
+function onClick(e){const t=e.target.closest('[data-action]');if(!t)return;const action=t.dataset.action, idx=Number(t.dataset.index);const model=S.model;
+ switch(action){
+  case 'ai-open': toggleChat(true);break;
+  case 'auto-start':S.active='auto';persist();render();break;
+  case 'auto-run':autoRun();break;
+  case 'auto-screen':autoScreen();break;
+  case 'auto-draft':autoDraft();break;
+  case 'auto-transfer':autoTransfer();break;
+  case 'auto-record':autoRecord();break;
+  case 'auto-audit':autoAudit();break;
+  case 'auto-filter':autoFilter(t.dataset.filter);break;
+  case 'auto-apply':autoApply(t.dataset.field);break;
+  case 'auto-apply-all':autoApply(null,true);break;
+  case 'round': S.round=t.dataset.round;persist(); if(!S.model){ROOT.querySelectorAll('.round-opt').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.round===S.round)));} else render();break;
+  case 'generate':{
+   const topic=$('#topic')?.value?.trim(),question=$('#question')?.value?.trim();if(!topic||!question){showToast('Please enter both the topic and CAT question.');return;}
+   S.model=newModel(topic,question,S.round);S.auto=autoFresh();S.library=[];S.active='overview';S.selected=undefined;persist();render();break;}
+  case 'resume':S.active='overview';render();break;
+  case 'nav':S.active=t.dataset.section;persist();render();window.scrollTo(0,0);break;
+  case 'backup':exportJSON();break;
+  case 'copy-query':{const q=model.s2_2.steps[idx]?.code;if(navigator.clipboard?.writeText)navigator.clipboard.writeText(q).then(()=>showToast('Search expression copied.')).catch(()=>showToast('Copy not available in this browser.'));else showToast('Select and copy the query from the textbox.');break;}
+  case 'add-db':model.s2_1.databases.push({db_id:'DB'+(model.s2_1.databases.length+1),name:'',peer_reviewed:true,language:'',year_range:'',reason:''});persist();render();break;
+  case 'add-step':model.s2_2.steps.push({no:model.s2_2.steps.length+1,code:'',hits:{},final_count:0,result_note:'Search not yet executed.',found_ev_ids:[]});persist();render();break;
+  case 'openalex':runOpenAlex();break;
+  case 'import-ris':$('#import-ris').click();break;
+  case 'blank-evidence':addEvidence();break;
+  case 'add-evidence':addEvidence(S.library[idx]);break;
+  case 'edit-evidence':S.selected=idx;persist();render();setTimeout(()=>$('#evidence-detail')?.scrollIntoView({behavior:'smooth',block:'start'}),100);break;
+  case 'remove-evidence':removeEvidence(idx);break;
+  case 'add-node':{const nodes=model.s5_1.nodes,n=nodes.reduce((m,x)=>Math.max(m,parseInt(x.node_id.slice(1))||0),0)+1;nodes.push({node_id:'N'+n,label:'New node',note:'Define this pathway component.'});persist();render();break;}
+  case 'add-link':{const n=model.s5_1.nodes;model.s5_2.links.push({from:n[0]?.node_id||'',to:n[1]?.node_id||'',direction:'?',ev_ids:[],mechanism:'Hypothesized link; evidence pending.'});persist();render();break;}
+  case 'pull-refs':{const have=new Set(model.references);for(const r of model.s2_3.evidence){if(r.citation&&!have.has(r.citation)){model.references.push(r.citation);have.add(r.citation);}}persist();render();showToast('Evidence citations added where missing. Verify APA formatting manually.');break;}
+  case 'import-work':$('#import-work').click();break;
+  case 'restart':if(confirm('Start a new CAT? Download a JSON backup first if you wish to keep this work.')){S.model=null;S.auto=autoFresh();S.library=[];S.active='overview';persist();render();}break;
+  case 'reinfer':if(confirm('Regenerate the draft? This replaces edited fields and clears evidence. Export a JSON backup first.')){const d=S.model;S.model=newModel(d.meta.topic,d.s1_2.question,d.meta.round);S.auto=autoFresh();S.library=[];S.selected=undefined;persist();render();}break;
+ }
+}
+function onInput(e){const t=e.target;if(!S.model)return;const p=t.dataset.path;if(p){let v=t.dataset.lines==='1'?asLines(t.value):t.value;if(t.type==='number')v=t.value===''?null:Number(t.value);set(S.model,p,v);if(p==='s1_2.question')S.model.s4_1.cat_question_restated=v;if(t.dataset.grade!==undefined){const i=+t.dataset.grade;relevel(i);persist();render();return;}persist();return;}
+ if(t.dataset.idsPath){set(S.model,t.dataset.idsPath,validIds(t.value));persist();return;}}
+ROOT.addEventListener('change',e=>{const t=e.target;if(t.matches('[data-auto-check]'))autoToggle(t.dataset.autoCheck,t.checked);});
+ROOT.addEventListener('click',onClick);ROOT.addEventListener('input',onInput);ROOT.addEventListener('change',onInput);
+$('#import-work').addEventListener('change',async function(){const f=this.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(j.schema_version!=='1.2'||!j.s2_3||!j.meta?.round)throw Error('Not an official schema 1.2 CAT working JSON.');S.model=j;S.round=j.meta.round;S.active='overview';S.auto=autoFresh();S.library=[];S.selected=undefined;ensureAssessment();persist();render();showToast('Official schema 1.2 working file imported.');}catch(e){showToast('Unable to load the working file: '+e.message);}this.value='';});
+$('#import-ris').addEventListener('change',async function(){let records=[];for(const f of this.files){const body=await f.text();if(f.name.toLowerCase().endsWith('.json')){try{const j=JSON.parse(body);records.push(...(Array.isArray(j)?j:[]));}catch(e){}}else records.push(...parseRIS(body));}addLibrary(records);this.value='';});
+/* CAT Copilot: optional live OpenAI Responses API via a separate, server-side proxy.
+   No API keys are sent to, stored in, or requested from the browser.
+   The official CAT 2026 JSON schema is unchanged. */
+const CHAT_ROOT = document.getElementById('cat-assistant-root');
+const CHAT = {open:false,health:false,enabled:false,model:'',checking:false,busy:false,history:[],input:'',target:'',error:'',draft:null};
+const CHAT_CHOICES = [
+ ['','Just discuss — do not edit the form'],
+ ['s1_1.decision_issue','I · Decision issue'],
+ ['s1_1.application_context','I · Application context'],
+ ['s1_2.question','I · CAT question'],
+ ['s2_3.selection_note','II · Evidence selection explanation'],
+ ['s3.table_note','III · Study assessment note'],
+ ['s4_1.conclusion','IV · CAT conclusion'],
+ ['s4_1.key_findings','IV · Key findings'],
+ ['s4_1.boundary_conditions','IV · Boundary conditions'],
+ ['s4_1.conflicting_findings','IV · Conflicting findings'],
+ ['s4_1.additional_considerations','IV · Additional considerations'],
+ ['s4_3.strengths','IV · CAT strengths'],
+ ['s4_3.weaknesses','IV · CAT weaknesses'],
+ ['s4_3.credibility_reason','IV · Credibility reasons']
+];
+const CHAT_PROMPTS = [
+ ['Review PICOC','Review my research question and PICOC against the 2026 CAT3 rubric. Identify ambiguity and give concrete corrections.'],
+ ['Search strategy','Critique the planned database search codes. Improve synonyms, Boolean syntax and traceability without inventing database hit counts.'],
+ ['Study appraisal','Explain how to distinguish research design, evidence level A–F, and effect size for this CAT. Do not infer findings without full text.'],
+ ['Find gaps','Audit the current CAT draft for unsupported conclusions, empty fields, missing source traceability and policy-logic inconsistencies.']
+];
+function chatAllowedTarget(value){return CHAT_CHOICES.some(([path])=>path===value);}
+function chatContext(){
+ if(!S.model)return {round:S.round,topic:'',question:'',active_section:'setup'};
+ const d=S.model,active=S.active;
+ const sections={question:{issue:d.s1_1,picoc:d.s1_3},search:{databases:d.s2_1.databases,steps:d.s2_2.steps},appraisal:{assessment:d.s3.assessment},synthesis:{conclusion:d.s4_1,by_level:d.s4_2,credibility:d.s4_3},logic:{nodes:d.s5_1.nodes,links:d.s5_2.links},decisions:d.s6_1};
+ const studied=d.s2_3.evidence.slice(0,15).map(e=>({id:e.ev_id,reference:e.citation,doi:e.doi,level:e.lv,comment:e.comment}));
+ const papers=S.library.slice(0,7).map(p=>({title:p.title,doi:p.doi,year:p.year,abstract:String(p.abstract||'').slice(0,420)}));
+ return {round:d.meta.round,topic:d.meta.topic,question:d.s1_2.question,active_section:active,section_draft:sections[active]||{problem:d.s1_1,summary:d.s4_1},evidence_items:studied,imported_candidate_records:papers,source_warning:'These are user-entered drafts or imported bibliographic records; full-text findings have not been independently verified.'};
+}
+function chatPromptForClipboard(message){
+ const instruction='You are an academic CAT research assistant for the SNU Fall 2026 CAT 1/2/3 template (schema 1.2). Follow PICOC = Population, Input, Context (Condition), Output, outCome. The study-level assessment uses P, I, (C), (Th), O, (C). Research levels A–F depend on control structure; +/- reflect within-band quality. Distinguish actual search results from plans, fertility intentions from actual births, and hypotheses from verified evidence. Never invent article details, references, effect sizes, search counts or causal findings. Propose precise edits and acknowledge uncertainties.';
+ return `${instruction}\n\nCURRENT CAT CONTEXT (user-provided draft, not verified):\n${JSON.stringify(chatContext(),null,2)}\n\nUSER REQUEST:\n${message}`;
+}
+async function chatHealth(){
+ if(CHAT.checking)return;
+ CHAT.checking=true;renderChat();
+ try{
+  const r=await fetch('/api/health',{cache:'no-store',signal:AbortSignal.timeout(5000)});
+  if(!r.ok)throw new Error('No server');
+  const j=await r.json();CHAT.enabled=!!j.configured;CHAT.model=String(j.model||'');
+ }catch(e){CHAT.enabled=false;CHAT.model='';}
+ CHAT.checking=false;CHAT.health=true;renderChat();
+}
+function toggleChat(open){CHAT.open=open;renderChat();if(open&&!CHAT.health)chatHealth();if(open)setTimeout(()=>CHAT_ROOT?.querySelector('#cat-chat-text')?.focus(),50);}
+function renderChat(){
+ if(!CHAT_ROOT)return;
+ const status=CHAT.checking?'Checking connection…':CHAT.enabled?`Connected · ${CHAT.model}`:'Demo mode · connect API for live chat';
+ const msgs=CHAT.history.length?CHAT.history.map((m,i)=>`<div class="cat-chat-message ${m.role==='user'?'from-user':'from-ai'}"><span class="cat-chat-role">${m.role==='user'?'You':'CAT Copilot'}</span><div class="cat-chat-bubble">${esc(m.content)}</div>${m.role==='assistant'&&m.target&&chatAllowedTarget(m.target)?`<button class="cat-chat-apply" type="button" data-chat-action="apply" data-msg="${i}">Apply to ${esc(CHAT_CHOICES.find(c=>c[0]===m.target)?.[1]||'field')} ↗</button>`:''}</div>`).join(''):
+ `<div class="cat-chat-welcome"><span class="cat-chat-hero">✦</span><h3>Meet your CAT Copilot</h3><p>Ask about research design, PICOC, evidence appraisal, or your current section. Suggestions are drafts and never overwrite your CAT without your approval.</p></div>`;
+ CHAT_ROOT.innerHTML=`<button class="cat-chat-launcher ${CHAT.open?'is-open':''}" id="cat-chat-launch" type="button" data-chat-action="toggle" aria-expanded="${CHAT.open}" aria-controls="cat-chat-panel" aria-label="${CHAT.open?'Close':'Open'} CAT Copilot">${CHAT.open?'×':'✦'}<span>${CHAT.open?'Close':'Ask AI'}</span></button>
+ <aside id="cat-chat-panel" class="cat-chat-panel ${CHAT.open?'is-open':''}" role="dialog" aria-label="CAT Copilot assistant" aria-modal="false" ${CHAT.open?'':'inert'}>
+   <div class="cat-chat-head"><div class="cat-chat-avatar">✦</div><div><strong>CAT Copilot</strong><div class="cat-chat-status"><span class="cat-chat-dot ${CHAT.enabled?'online':'offline'}"></span>${esc(status)}</div></div><div class="cat-chat-top-actions"><button type="button" data-chat-action="clear" title="Clear chat history" aria-label="Clear chat history">↺</button><button type="button" data-chat-action="toggle" title="Close" aria-label="Close chat">×</button></div></div>
+   <div class="cat-chat-privacy">${CHAT.enabled?'Connected to OpenAI API through your secure server. Avoid including private or confidential source material.':'Live AI requires the optional server and an OpenAI API key. You can copy your prepared prompt into ChatGPT without configuring the API.'}</div>
+   <div id="cat-chat-messages" class="cat-chat-messages" aria-live="polite">${msgs}${CHAT.busy?'<div class="cat-chat-message from-ai"><span class="cat-chat-role">CAT Copilot</span><div class="cat-chat-bubble cat-chat-thinking">Preparing a careful response…</div></div>':''}</div>
+   <div class="cat-chat-prompt-row">${CHAT_PROMPTS.map(([title,prompt],i)=>`<button type="button" data-chat-action="quick" data-quick="${i}">${esc(title)}</button>`).join('')}</div>
+   <div class="cat-chat-compose">
+     <label for="cat-chat-target">Suggested answer destination</label>
+     <select id="cat-chat-target" aria-label="Select form destination">${CHAT_CHOICES.map(([path,label])=>`<option value="${esc(path)}"${CHAT.target===path?' selected':''}>${esc(label)}</option>`).join('')}</select>
+     <label for="cat-chat-text" class="sr-only">Your message</label><textarea id="cat-chat-text" rows="3" placeholder="Ask a CAT research question, or request a draft for the selected field…" maxlength="4000">${esc(CHAT.input)}</textarea>
+     ${CHAT.error?`<div class="cat-chat-error" role="alert">${esc(CHAT.error)}</div>`:''}
+     <div class="cat-chat-send-row"><span>${CHAT.enabled?'Enter to send · Shift+Enter for a new line':'No key? Copy a ready-to-use prompt.'}</span><button class="cat-chat-copy" type="button" data-chat-action="copy">Copy prompt</button><button class="cat-chat-send" type="button" data-chat-action="send" ${!CHAT.enabled||CHAT.busy?'disabled':''}>${CHAT.busy?'Working…':'Send ↗'}</button></div>
+   </div>
+ </aside>`;
+ if(CHAT.open){const view=CHAT_ROOT.querySelector('#cat-chat-messages');if(view)view.scrollTop=view.scrollHeight;}
+}
+async function chatSend(){
+ const input=CHAT.input.trim();if(!input||CHAT.busy)return;
+ if(!CHAT.enabled){CHAT.error='Live chat is not configured. Use Copy prompt or start the API server.';renderChat();return;}
+ CHAT.busy=true;CHAT.error='';
+ const prior=CHAT.history.slice(-12).map(x=>({role:x.role,content:x.content}));
+ const selected=CHAT.target;
+ CHAT.history.push({role:'user',content:input});CHAT.input='';renderChat();
+ try{
+  const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:input,history:prior,context:chatContext(),target:selected})});
+  const data=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(data.error||`Server error ${r.status}`);
+  if(!data.answer||typeof data.answer!=='string')throw new Error('The model returned an empty response.');
+  CHAT.history.push({role:'assistant',content:data.answer,target:selected});
+ }catch(e){CHAT.history.pop();CHAT.input=input;CHAT.error='Message could not be sent: '+e.message;}
+ CHAT.busy=false;renderChat();
+}
+async function chatCopy(){
+ const message=CHAT.input.trim()||'Review my current CAT question and provide actionable improvements.';
+ const all=chatPromptForClipboard(message);
+ try{await navigator.clipboard.writeText(all);showToast('CAT context and prompt copied. Paste them into ChatGPT.');CHAT.error='';}
+ catch(e){CHAT.error='Clipboard access is unavailable here. Run the website on localhost or copy from the text field.';}
+ renderChat();
+}
+function applyChatDraft(index){
+ const m=CHAT.history[index];if(!m||m.role!=='assistant'||!chatAllowedTarget(m.target)||!m.target){return;}
+ if(!S.model){CHAT.error='Create a CAT workspace before applying suggestions.';renderChat();return;}
+ let current=get(S.model,m.target);
+ if(current===undefined){CHAT.error='This field is unavailable in the active CAT.';renderChat();return;}
+ const label=CHAT_CHOICES.find(x=>x[0]===m.target)?.[1]||m.target;
+ if(!confirm(`Replace the current content of “${label}” with this AI-generated draft? Review and verify it before submission.`))return;
+ const text=m.content.replace(/^```(?:text|markdown)?\s*/i,'').replace(/\s*```$/,'').trim();
+ const isList=Array.isArray(current);
+ set(S.model,m.target,isList?asLines(text).map(s=>s.replace(/^\s*(?:[-*•]|\d+[.)])\s*/,'')):text);
+ if(m.target==='s1_2.question')S.model.s4_1.cat_question_restated=text;
+ persist();render();showToast('Draft applied to '+label+'. Review it before submission.');
+}
+CHAT_ROOT?.addEventListener('click',e=>{
+ const b=e.target.closest('[data-chat-action]');if(!b)return;
+ switch(b.dataset.chatAction){
+ case 'toggle':toggleChat(!CHAT.open);break;
+ case 'quick':CHAT.input=CHAT_PROMPTS[Number(b.dataset.quick)]?.[1]||'';CHAT.error='';renderChat();CHAT_ROOT.querySelector('#cat-chat-text')?.focus();break;
+ case 'clear':if(!CHAT.history.length||confirm('Clear the conversation from this browser session?')){CHAT.history=[];CHAT.error='';renderChat();}break;
+ case 'send':chatSend();break;
+ case 'copy':chatCopy();break;
+ case 'apply':applyChatDraft(Number(b.dataset.msg));break;
+ }
+});
+CHAT_ROOT?.addEventListener('input',e=>{if(e.target.id==='cat-chat-text')CHAT.input=e.target.value;});
+CHAT_ROOT?.addEventListener('change',e=>{if(e.target.id==='cat-chat-target')CHAT.target=chatAllowedTarget(e.target.value)?e.target.value:'';});
+CHAT_ROOT?.addEventListener('keydown',e=>{if(e.target.id==='cat-chat-text'&&e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();chatSend();}else if(e.key==='Escape'&&CHAT.open){toggleChat(false);}});
+document.addEventListener('keydown',e=>{if(CHAT.open&&e.key==='Escape'&&e.target.id!=='cat-chat-text')toggleChat(false);});
+render();
+
+</script>
+</body>
+</html>
