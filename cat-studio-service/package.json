@@ -1,0 +1,14 @@
+{
+  "name": "cat-studio-secure",
+  "version": "3.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Protected CAT Studio hosted service for Render",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
