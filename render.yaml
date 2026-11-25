@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: cat-studio-secure
+    runtime: node
+    plan: starter
+    rootDir: cat-studio-service
+    buildCommand: npm install --ignore-scripts
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: CAT_OPENAI_MODEL
+        value: gpt-5-mini
+      - key: CAT_MAX_AI_CALLS_PER_DAY
+        value: "80"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: CAT_STUDIO_PASSWORD
+        sync: false
+      - key: CAT_SESSION_SECRET
+        generateValue: true
