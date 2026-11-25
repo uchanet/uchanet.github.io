@@ -2,7 +2,7 @@ services:
   - type: web
     name: cat-studio-secure
     runtime: node
-    plan: 0.5c-512mb
+    plan: free
     rootDir: cat-studio-service
     buildCommand: npm install --ignore-scripts
     startCommand: npm start
