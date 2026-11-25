@@ -24,8 +24,8 @@ if (PASSWORD.length < 16 || SECRET.length < 32 || !OPENAI_KEY || !Number.isInteg
 const SALT = createHash('sha256').update(SECRET).digest().subarray(0, 16);
 const PASS_HASH = scryptSync(PASSWORD, SALT, 64);
 const LIMITS = new Map();
-const MIME = { 'index.html':'text/html; charset=utf-8','styles.css':'text/css; charset=utf-8','app.js':'text/javascript; charset=utf-8','auto-research.js':'text/javascript; charset=utf-8','Official_CAT_2026.html':'text/html; charset=utf-8' };
-const FILES = {'/':'index.html','/index.html':'index.html','/styles.css':'styles.css','/app.js':'app.js','/auto-research.js':'auto-research.js','/Official_CAT_2026.html':'Official_CAT_2026.html'};
+const MIME = { 'index.html':'text/html; charset=utf-8','styles.css':'text/css; charset=utf-8','app.js':'text/javascript; charset=utf-8','auto-research.js':'text/javascript; charset=utf-8' };
+const FILES = {'/':'index.html','/index.html':'index.html','/styles.css':'styles.css','/app.js':'app.js','/auto-research.js':'auto-research.js'};
 const RULES = [
   'You are a careful policy research assistant for an SNU Critical Appraisal of a Topic (CAT), Fall 2026.',
   'CAT1 and CAT3 have logic models; CAT2 does not.',
