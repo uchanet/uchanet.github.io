@@ -1,0 +1,26 @@
+name: CAT Studio secure service checks
+on:
+  push:
+    branches: [cat-studio-render]
+  pull_request:
+    paths:
+      - 'cat-studio-service/**'
+      - 'render.yaml'
+      - '.github/workflows/cat-studio-ci.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check code syntax
+        working-directory: cat-studio-service
+        run: |
+          node --check server.mjs
+          node --check app.js
+          node --check auto-research.js
+      - name: Run authentication and API integration tests
+        working-directory: cat-studio-service
+        run: node test-secure.mjs
